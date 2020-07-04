@@ -52,7 +52,7 @@ public class VideoDao {
     	System.out.println("InitializeDB For YoutubeVideos");
     	String sql1 = "DROP TABLE IF EXISTS YoutubeVideos";
         String sql2 = "CREATE TABLE IF NOT EXISTS YoutubeVideos" +
-                       " url VARCHAR(50), " +
+                       " (url VARCHAR(50), " +
                        " title VARCHAR(50), " + 
                        " desc VARCHAR(200), " + 
                        " comid INTEGER NOT NULL, " +
@@ -60,9 +60,8 @@ public class VideoDao {
                        " postdate DATE, " +
                        " PRIMARY KEY (url), " +
                        " FOREIGN KEY (comid) REFERENCES Comedians(comid), " +
-                       " FOREIGN KEY (postuser) REFERENCES Users(email), " ; 
+                       " FOREIGN KEY (postuser) REFERENCES Users(email)) " ; 
         
-        String sql3 = "insert into YoutubeVideos(url, title, desc) values (?, ?, ?)";
         String sql4 = "insert into YoutubeVideos(url, title, desc) values (\"youtube.com/1\", \"Sketch1\", \"Description1\")";
         String sql5 = "insert into YoutubeVideos(url, title, desc) values (\"youtube.com/2\", \"Sketch2\", \"Description2\")";
         String sql6 = "insert into YoutubeVideos(url, title, desc) values (\"youtube.com/3\", \"Sketch3\", \"Description3\")";
@@ -86,7 +85,6 @@ public class VideoDao {
 
           statement.executeUpdate(sql1);
           statement.executeUpdate(sql2);
-          statement.executeUpdate(sql3);
           statement.executeUpdate(sql4);
           statement.executeUpdate(sql5);
           statement.executeUpdate(sql6);
