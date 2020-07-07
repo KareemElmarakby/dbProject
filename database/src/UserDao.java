@@ -50,17 +50,17 @@ public class UserDao {
     public static void InitializeDB() {
     	// TODO Auto-generated method stub
     	System.out.println("InitializeDB for Users");
-    	String sql1 = "DROP TABLE IF EXISTS Users";
-        String sql2 = "CREATE TABLE IF NOT EXISTS Users" +
-                       " email VARCHAR(50), " +
-                       " pass VARCHAR(50), " + 
-                       " first VARCHAR(50), " + 
-                       " last VARCHAR(50), " +
-                       " gender CHAR(1), " + 
-                       " age INTEGER, " +
-                       " PRIMARY KEY (email) "; 
+    	String sql1 = "DROP TABLE IF EXISTS Users;";
+        String sql2 = "CREATE TABLE IF NOT EXISTS Users(" +
+                       "email VARCHAR(50), " +
+                       "pass VARCHAR(50), " + 
+                       "first VARCHAR(50), " + 
+                       "last VARCHAR(50), " +
+                       "gender CHAR(1), " + 
+                       "age INTEGER, " +
+                       "PRIMARY KEY (email)); "; 
         
-        String sql3 = "insert into Users(email, pass, first, last, gender, age) values (?, ?, ?, ?, ?, ?)";
+        //String sql3 = "insert into Users(email, pass, first, last, gender, age) values (?, ?, ?, ?, ?, ?)";
         String sql4 = "insert into Users(email, pass, first, last, gender, age) values (\"user1@gmail.com\", \"secretpassword1\", \"Kareem\", \"First\", \"m\", \"21\")";
         String sql5 = "insert into Users(email, pass, first, last, gender, age) values (\"user2@gmail.com\", \"secretpassword2\", \"John\", \"Second\", \"f\", \"23\")";
         String sql6 = "insert into Users(email, pass, first, last, gender, age) values (\"user3@gmail.com\", \"secretpassword3\", \"Joe\", \"Third\", \"m\", \"55\")";
@@ -74,7 +74,7 @@ public class UserDao {
         
         try {
         	
-        	Class.forName("com.mysql.jdbc.Driver");
+        	Class.forName("com.mysql.cj.jdbc.Driver");
         	
           System.out.println("Select a table and then print out its content.");
           connect = DriverManager
@@ -85,7 +85,7 @@ public class UserDao {
 
           statement.executeUpdate(sql1);
           statement.executeUpdate(sql2);
-          statement.executeUpdate(sql3);
+          //statement.executeUpdate(sql3);
           statement.executeUpdate(sql4);
           statement.executeUpdate(sql5);
           statement.executeUpdate(sql6);

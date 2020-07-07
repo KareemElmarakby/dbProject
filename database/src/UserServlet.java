@@ -51,6 +51,9 @@ public class UserServlet extends HttpServlet {
             case "/login":
             	login(request, response);
             	break;
+            case "/logvideo":
+            	logvideo(request, response);
+            	break;
             default:          	
             	listPeople(request, response);           	
                 break;
@@ -60,7 +63,27 @@ public class UserServlet extends HttpServlet {
         }
     }
     
-    protected void login(HttpServletRequest request, HttpServletResponse response)
+    private void logvideo(HttpServletRequest request, HttpServletResponse response) {
+        String user = request.getParameter("email");
+        String url = request.getParameter("url");
+        String title = request.getParameter("title");
+        String desc = request.getParameter("desc");
+        String tags = request.getParameter("tags");
+        String comedian = request.getParameter("com");
+        
+        Video yt = new Video(user, url, title, desc, comedian);
+        VideoTags ytTags = new VideoTags(url, tags);
+        
+        try {
+			VideoDao.logvideo(yt);
+	        VideoTagsDao.logtags(ytTags);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}   
+	}
+
+	protected void login(HttpServletRequest request, HttpServletResponse response)
     		throws ServletException, IOException {
     	System.out.println("testing for login");
     	String username = request.getParameter("user");

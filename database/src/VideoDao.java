@@ -5,14 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class VideoDao {
 	private static final long serialVersionUID = 1L;
 	private static Connection connect = null;
 	private static Statement statement = null;
-	private PreparedStatement preparedStatement = null;
+	private static PreparedStatement preparedStatement = null;
 	private static ResultSet resultSet = null;
 
     protected void connect_func() throws SQLException {
@@ -50,17 +52,17 @@ public class VideoDao {
     public static void InitializeDB() {
     	// TODO Auto-generated method stub
     	System.out.println("InitializeDB For YoutubeVideos");
-    	String sql1 = "DROP TABLE IF EXISTS YoutubeVideos";
-        String sql2 = "CREATE TABLE IF NOT EXISTS YoutubeVideos" +
-                       " url VARCHAR(50), " +
-                       " title VARCHAR(50), " + 
-                       " desc VARCHAR(200), " + 
-                       " comid INTEGER NOT NULL, " +
-                       " postuser VARCHAR(50) NOT NULL, " +
-                       " postdate DATE, " +
-                       " PRIMARY KEY (url), " +
-                       " FOREIGN KEY (comid) REFERENCES Comedians(comid), " +
-                       " FOREIGN KEY (postuser) REFERENCES Users(email), " ; 
+    	String sql1 = "DROP TABLE IF EXISTS YoutubeVideos;";
+        String sql2 = "CREATE TABLE IF NOT EXISTS YoutubeVideos(" +
+                       "url VARCHAR(50), " +
+                       "title VARCHAR(50), " + 
+                       "desc VARCHAR(200), " + 
+                       "comid INTEGER NOT NULL, " +
+                       "postuser VARCHAR(50) NOT NULL, " +
+                       "postdate DATE, " +
+                       "PRIMARY KEY (url), " +
+                       "FOREIGN KEY (comid) REFERENCES Comedians(comid), " +
+                       "FOREIGN KEY (postuser) REFERENCES Users(email))" ; 
         
         String sql3 = "insert into YoutubeVideos(url, title, desc) values (?, ?, ?)";
         String sql4 = "insert into YoutubeVideos(url, title, desc) values (\"youtube.com/1\", \"Sketch1\", \"Description1\")";
@@ -108,4 +110,44 @@ public class VideoDao {
         }
     }
     
+    public static void logvideo(Video video) throws SQLException{          	
+    try {
+    	
+    	Class.forName("com.mysql.jdbc.Driver");
+      System.out.println("Select a table and then print out its content.");
+      connect = DriverManager
+          .getConnection("jdbc:mysql://localhost:3306/testdb?"
+              + "user=root&password=pass123");
+      
+		String sql = "insert into YoutubeVideos(url, title, desc, comid, postuser, postdate) values (?, ?, ?, ?, ?, ?)";
+		
+	  preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+      preparedStatement.setString(1, video.getUrl());
+      preparedStatement.setString(2, video.getTitle());
+      preparedStatement.setString(3, video.getDesc());
+      preparedStatement.setString(4, video.getCom());
+      preparedStatement.setString(5, video.getEmail());
+      
+      Date date = Calendar.getInstance().getTime();  
+      DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");  
+      String strDate = dateFormat.format(date);
+      		
+      preparedStatement.setString(6, strDate);
+//		preparedStatement.executeUpdate();
+		
+      System.out.println("Insert is successful!");
+      preparedStatement.close();
+//      disconnect();
+      
+    } 
+    catch (Exception e) {
+         System.out.println(e);
+    } 
+      
+    finally {
+      close();
+    }
 }
+
+}
+    
