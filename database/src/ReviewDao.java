@@ -52,7 +52,7 @@ public class ReviewDao {
     	System.out.println("InitializeDB For Review");
     	String sql1 = "DROP TABLE IF EXISTS Reviews";
         String sql2 = "CREATE TABLE IF NOT EXISTS Reviews" +
-        		       " reviewid INTEGER NOT NULL AUTO_INCREMENT, " +
+        		       " (reviewid INTEGER NOT NULL AUTO_INCREMENT, " +
                        " remark VARCHAR(100), " +
                        " rating CHAR(1), " + 
                        " author VARCHAR(50) NOT NULL, " + 
@@ -60,9 +60,8 @@ public class ReviewDao {
                        " PRIMARY KEY(reviewid), " + 
                        " FOREIGN KEY(author) REFERENCES Users(email), " +
                        " FOREIGN KEY(youtubeid) REFERENCES YouTubeVideos(url), " +
-                       " CONSTRAINT ratingcr CHECK rating IN ['P', 'F','G','E']"; 
+                       " CONSTRAINT ratingcr CHECK rating IN ['P', 'F','G','E'])"; 
         
-        String sql3 = "insert into (remark, rating, author, youtube) values (?, ?, ?, ?)";
         String sql4 = "insert into Reviews(remark, rating, author, youtube) values (\"This video was ok\", \"G\", \"Kareem\", \"Chris Rock: Project 1 Blues\")";
         String sql5 = "insert into Reviews(remark, rating, author, youtube) values (\"This video was ok\", \"G\", \"John\", \"Chris Rock: Project 1 Blues\")";
         String sql6 = "insert into Reviews(remark, rating, author, youtube) values (\"This video was ok\", \"G\", \"Joe\", \"Chris Rock: Project 1 Blues\")";
@@ -87,7 +86,6 @@ public class ReviewDao {
 
           statement.executeUpdate(sql1);
           statement.executeUpdate(sql2);
-          statement.executeUpdate(sql3);
           statement.executeUpdate(sql4);
           statement.executeUpdate(sql5);
           statement.executeUpdate(sql6);

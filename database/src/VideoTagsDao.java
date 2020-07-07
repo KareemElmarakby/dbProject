@@ -56,11 +56,10 @@ public class VideoTagsDao {
     	System.out.println("InitializeDB For VideoTags");
     	String sql1 = "DROP TABLE IF EXISTS VideoTags";
         String sql2 = "CREATE TABLE IF NOT EXISTS VideoTags" +
-                       " url VARCHAR(50), " +
+                       " (url VARCHAR(50), " +
                        " tag VARCHAR(50), " + 
-                       " PRIMARY KEY (url, tag) "; 
-        
-        String sql3 = "insert into (url, tag) values (?, ?)";
+                       " PRIMARY KEY (url, tag)) "; 
+   
         String sql4 = "insert into VideoTags(url, tag) values (\"youtube.com/sgduyasd\", \"cool, neat, tables!\")";
         String sql5 = "insert into VideoTags(url, tag) values (\"youtube.com/bhasihdui\", \"cool, neat, tables!\")";
         String sql6 = "insert into VideoTags(url, tag) values (\"youtube.com/dayhwufa\", \"cool, neat, tables!\")";
@@ -85,7 +84,6 @@ public class VideoTagsDao {
 
           statement.executeUpdate(sql1);
           statement.executeUpdate(sql2);
-          statement.executeUpdate(sql3);
           statement.executeUpdate(sql4);
           statement.executeUpdate(sql5);
           statement.executeUpdate(sql6);
