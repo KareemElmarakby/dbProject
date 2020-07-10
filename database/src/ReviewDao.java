@@ -74,7 +74,7 @@ public class ReviewDao {
         String sql9 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was ok\", \"G\", \"Tahmid\", \"Chris Rock: Project 1 Blues\")";
         String sql10 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was ok\", \"G\", \"Chris\", \"Chris Rock: Project 1 Blues\")";
         String sql11 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was ok\", \"G\", \"Mike\", \"Chris Rock: Project 1 Blues\")";
-        String sql12 = "insert into Reviews(remark, rating, author, youtubedid) values (\"This video was ok\", \"G\", \"Amanda\", \"Chris Rock: Project 1 Blues\")";
+        String sql12 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was ok\", \"G\", \"Amanda\", \"Chris Rock: Project 1 Blues\")";
         
         try {
         	
