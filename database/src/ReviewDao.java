@@ -54,29 +54,27 @@ public class ReviewDao {
     public static void InitializeDB() {
     	// TODO Auto-generated method stub
     	System.out.println("InitializeDB For Review");
-    	String sql1 = "DROP TABLE IF EXISTS Reviews";
         String sql2 = "CREATE TABLE IF NOT EXISTS Reviews" +
         		       " (reviewid INTEGER NOT NULL AUTO_INCREMENT, " +
                        " remark VARCHAR(100), " +
                        " rating CHAR(1), " + 
                        " author VARCHAR(50) NOT NULL, " + 
-                       " youtube VARCHAR(150) NOT NULL, " +
+                       " youtubeid VARCHAR(150) NOT NULL, " +
                        " PRIMARY KEY(reviewid), " + 
                        " FOREIGN KEY(author) REFERENCES Users(email), " +
                        " FOREIGN KEY(youtubeid) REFERENCES YouTubeVideos(url), " +
-                       " CONSTRAINT ratingcr CHECK rating IN ['P', 'F','G','E'])"; 
+                       " CONSTRAINT ratingcr CHECK (rating IN ('P', 'F','G','E')))"; 
         
-        String sql4 = "insert into Reviews(remark, rating, author, youtube) values (\"This video was ok\", \"G\", \"Kareem\", \"Chris Rock: Project 1 Blues\")";
-        String sql5 = "insert into Reviews(remark, rating, author, youtube) values (\"This video was ok\", \"G\", \"John\", \"Chris Rock: Project 1 Blues\")";
-        String sql6 = "insert into Reviews(remark, rating, author, youtube) values (\"This video was ok\", \"G\", \"Joe\", \"Chris Rock: Project 1 Blues\")";
-        String sql7 = "insert into Reviews(remark, rating, author, youtube) values (\"This video was ok\", \"G\", \"Dan\", \"Chris Rock: Project 1 Blues\")";
-        String sql8 = "insert into Reviews(remark, rating, author, youtube) values (\"This video was ok\", \"G\", \"Bob\", \"Chris Rock: Project 1 Blues\")";
-        String sql9 = "insert into Reviews(remark, rating, author, youtube) values (\"This video was ok\", \"G\", \"Chase\", \"Chris Rock: Project 1 Blues\")";
-        String sql10 = "insert into Reviews(remark, rating, author, youtube) values (\"This video was ok\", \"G\", \"Tahmid\", \"Chris Rock: Project 1 Blues\")";
-        String sql11 = "insert into Reviews(remark, rating, author, youtube) values (\"This video was ok\", \"G\", \"Chris\", \"Chris Rock: Project 1 Blues\")";
-        String sql12 = "insert into Reviews(remark, rating, author, youtube) values (\"This video was ok\", \"G\", \"Mike\", \"Chris Rock: Project 1 Blues\")";
-        String sql13 = "insert into Reviews(remark, rating, author, youtube) values (\"This video was ok\", \"G\", \"Amanda\", \"Chris Rock: Project 1 Blues\")";
-
+        String sql3 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was ok\", \"G\", \"Kareem\", \"Chris Rock: Project 1 Blues\")";
+        String sql4 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was ok\", \"G\", \"John\", \"Chris Rock: Project 1 Blues\")";
+        String sql5 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was ok\", \"G\", \"Joe\", \"Chris Rock: Project 1 Blues\")";
+        String sql6 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was ok\", \"G\", \"Dan\", \"Chris Rock: Project 1 Blues\")";
+        String sql7 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was ok\", \"G\", \"Bob\", \"Chris Rock: Project 1 Blues\")";
+        String sql8 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was ok\", \"G\", \"Chase\", \"Chris Rock: Project 1 Blues\")";
+        String sql9 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was ok\", \"G\", \"Tahmid\", \"Chris Rock: Project 1 Blues\")";
+        String sql10 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was ok\", \"G\", \"Chris\", \"Chris Rock: Project 1 Blues\")";
+        String sql11 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was ok\", \"G\", \"Mike\", \"Chris Rock: Project 1 Blues\")";
+        String sql12 = "insert into Reviews(remark, rating, author, youtubedid) values (\"This video was ok\", \"G\", \"Amanda\", \"Chris Rock: Project 1 Blues\")";
         
         try {
         	
@@ -88,18 +86,17 @@ public class ReviewDao {
           
           statement = connect.createStatement();
 
-          statement.executeUpdate(sql1);
           statement.executeUpdate(sql2);
-          statement.executeUpdate(sql4);
-          statement.executeUpdate(sql5);
-          statement.executeUpdate(sql6);
-          statement.executeUpdate(sql7);
-          statement.executeUpdate(sql8);
-          statement.executeUpdate(sql9);
-          statement.executeUpdate(sql10);
-          statement.executeUpdate(sql11);
-          statement.executeUpdate(sql12);
-          statement.executeUpdate(sql13);
+          statement.executeUpdate(sql3);
+		  statement.executeUpdate(sql4);
+		  statement.executeUpdate(sql5);
+		  statement.executeUpdate(sql6);
+		  statement.executeUpdate(sql7);
+		  statement.executeUpdate(sql8);
+		  statement.executeUpdate(sql9);
+		  statement.executeUpdate(sql10);
+		  statement.executeUpdate(sql11);
+		  statement.executeUpdate(sql12);
           
         } 
         catch (Exception e) {
@@ -143,6 +140,5 @@ public class ReviewDao {
 	      close();
 	    }
 		
-	}
+	}}
     
-}

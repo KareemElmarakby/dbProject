@@ -50,25 +50,24 @@ public class ComedianDao {
     public static void InitializeDB() {
     	// TODO Auto-generated method stub
     	System.out.println("InitializeDB For Comedians");
-    	String sql1 = "DROP TABLE IF EXISTS Comedians";
         String sql2 = "CREATE TABLE IF NOT EXISTS Comedians" +
-                       " (comid INTEGER, " +
+                       " (comid INT NOT NULL AUTO_INCREMENT, " +
                        " firstname VARCHAR(50), " + 
                        " lastname VARCHAR(50), " + 
                        " birthday DATE, " +
                        " birthplace VARCHAR(50), " + 
                        " PRIMARY KEY (comid)) "; 
         
-        String sql4 = "insert into Comedians(comid, firstname, lastname, birthday, birthplace) values (\"1\", \"First1\", \"Last1\", \"March 10\", \"Dakota\")";
-        String sql5 = "insert into Comedians(comid, firstname, lastname, birthday, birthplace) values (\"2\", \"First2\", \"Last2\", \"March 11\", \"Michigan\")";
-        String sql6 = "insert into Comedians(comid, firstname, lastname, birthday, birthplace) values (\"3\", \"First3\", \"Last3\", \"March 12\", \"Texas\")";
-        String sql7 = "insert into Comedians(comid, firstname, lastname, birthday, birthplace) values (\"4\", \"First4\", \"Last4\", \"March 13\", \"Maine\")";
-        String sql8 = "insert into Comedians(comid, firstname, lastname, birthday, birthplace) values (\"5\", \"First5\", \"Last5\", \"March 14\", \"Washington\")";
-        String sql9 = "insert into Comedians(comid, firstname, lastname, birthday, birthplace) values (\"6\", \"First6\", \"Last6\", \"March 15\", \"New York\")";
-        String sql10 = "insert into Comedians(comid, firstname, lastname, birthday, birthplace) values (\"7\", \"First7\", \"Last7\", \"March 16\", \"Florida\")";
-        String sql11 = "insert into Comedians(comid, firstname, lastname, birthday, birthplace) values (\"8\", \"First8\", \"Last8\", \"March 17\", \"California\")";
-        String sql12 = "insert into Comedians(comid, firstname, lastname, birthday, birthplace) values (\"9\", \"First9\", \"Last9\", \"March 18\", \"Kansas\")";
-        String sql13 = "insert into Comedians(comid, firstname, lastname, birthday, birthplace) values (\"10\", \"First10\", \"Last10\", \"March 19\", \"Tennessee\")";
+        String sql3 = "insert into Comedians(comid, firstname, lastname, birthday, birthplace) values (\"1\", \"First1\", \"Last1\", \"DATE '2013-11-26'\", \"Dakota\")";
+        String sql4 = "insert into Comedians(comid, firstname, lastname, birthday, birthplace) values (\"2\", \"First2\", \"Last2\", \"DATE '2013-11-26'\", \"Michigan\")";
+        String sql5 = "insert into Comedians(comid, firstname, lastname, birthday, birthplace) values (\"3\", \"First3\", \"Last3\", \"DATE '2013-11-26'\", \"Texas\")";
+        String sql6 = "insert into Comedians(comid, firstname, lastname, birthday, birthplace) values (\"4\", \"First4\", \"Last4\", \"DATE '2013-11-26'\", \"Maine\")";
+        String sql7 = "insert into Comedians(comid, firstname, lastname, birthday, birthplace) values (\"5\", \"First5\", \"Last5\", \"DATE '2013-11-26'\", \"Washington\")";
+        String sql8 = "insert into Comedians(comid, firstname, lastname, birthday, birthplace) values (\"6\", \"First6\", \"Last6\", \"DATE '2013-11-26'\", \"New York\")";
+        String sql9 = "insert into Comedians(comid, firstname, lastname, birthday, birthplace) values (\"7\", \"First7\", \"Last7\", \"DATE '2013-11-26'\", \"Florida\")";
+        String sql10 = "insert into Comedians(comid, firstname, lastname, birthday, birthplace) values (\"8\", \"First8\", \"Last8\", \"DATE '2013-11-26'\", \"California\")";
+        String sql11 = "insert into Comedians(comid, firstname, lastname, birthday, birthplace) values (\"9\", \"First9\", \"Last9\", \"DATE '2013-11-26'\", \"Kansas\")";
+        String sql12 = "insert into Comedians(comid, firstname, lastname, birthday, birthplace) values (\"10\", \"First10\", \"Last10\", \"DATE '2013-11-26'\", \"Tennessee\")";
         
         try {
         	
@@ -80,18 +79,17 @@ public class ComedianDao {
           
           statement = connect.createStatement();
 
-          statement.executeUpdate(sql1);
           statement.executeUpdate(sql2);
-          statement.executeUpdate(sql4);
-          statement.executeUpdate(sql5);
-          statement.executeUpdate(sql6);
-          statement.executeUpdate(sql7);
-          statement.executeUpdate(sql8);
-          statement.executeUpdate(sql9);
-          statement.executeUpdate(sql10);
-          statement.executeUpdate(sql11);
-          statement.executeUpdate(sql12);
-          statement.executeUpdate(sql13);
+          statement.executeUpdate(sql3);
+		  statement.executeUpdate(sql4);
+		  statement.executeUpdate(sql5);
+		  statement.executeUpdate(sql6);
+		  statement.executeUpdate(sql7);
+		  statement.executeUpdate(sql8);
+		  statement.executeUpdate(sql9);
+		  statement.executeUpdate(sql10);
+		  statement.executeUpdate(sql11);
+		  statement.executeUpdate(sql12);
           
         } 
         catch (Exception e) {
@@ -102,5 +100,4 @@ public class ComedianDao {
           close();
         }
     }
-    
 }
