@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -54,6 +55,12 @@ public class UserServlet extends HttpServlet {
             case "/logvideo":
             	logvideo(request, response);
             	break;
+            case "/searchvideo":
+            	results(request, response);
+            	break;
+            case "/review":
+            	review(request, response);
+            	break;
             default:          	
             	listPeople(request, response);           	
                 break;
@@ -63,7 +70,28 @@ public class UserServlet extends HttpServlet {
         }
     }
     
-    private void logvideo(HttpServletRequest request, HttpServletResponse response) {
+    private void review(HttpServletRequest request, HttpServletResponse response) {
+        String remark = request.getParameter("comment");
+        String rating = request.getParameter("rating");
+        HttpSession session = request.getSession();
+        String author = (String)session.getAttribute("email");
+        String youtube = (String)session.getAttribute("url");
+        
+        
+        Review re = new Review(remark, rating, author, youtube);
+        
+        ReviewDao.logreview(re);   //UNDER CONSTRUCTION
+	}
+		
+
+	private void results(HttpServletRequest request, HttpServletResponse response) {
+        String search = request.getParameter("search");
+        
+        SearchDao.showResults(search);   
+	}
+	
+
+	private void logvideo(HttpServletRequest request, HttpServletResponse response) {
         String user = request.getParameter("email");
         String url = request.getParameter("url");
         String title = request.getParameter("title");

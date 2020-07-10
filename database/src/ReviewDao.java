@@ -5,14 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class ReviewDao {
 	private static final long serialVersionUID = 1L;
 	private static Connection connect = null;
 	private static Statement statement = null;
-	private PreparedStatement preparedStatement = null;
+	private static PreparedStatement preparedStatement = null;
 	private static ResultSet resultSet = null;
 
     protected void connect_func() throws SQLException {
@@ -106,5 +110,39 @@ public class ReviewDao {
           close();
         }
     }
+
+	public static void logreview(Review re) {
+	    try {
+	    	
+	    	Class.forName("com.mysql.jdbc.Driver");
+	      System.out.println("Select a table and then print out its content.");
+	      connect = DriverManager
+	          .getConnection("jdbc:mysql://localhost:3306/testdb?"
+	              + "user=root&password=pass123");
+	      
+			String sql = "insert into Reviews(remark, rating, author, youtube) values (?, ?, ?, ?)";
+			
+		  preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
+	      preparedStatement.setString(1, re.getRemark());
+	      preparedStatement.setString(2, re.getRating());
+	      preparedStatement.setString(3, re.getAuthor());
+	      preparedStatement.setString(4, re.getYoutube());
+	      
+	      preparedStatement.executeUpdate();
+			
+	      System.out.println("Insert is successful!");
+	      preparedStatement.close();
+//	      disconnect();
+	      
+	    } 
+	    catch (Exception e) {
+	         System.out.println(e);
+	    } 
+	      
+	    finally {
+	      close();
+	    }
+		
+	}
     
 }

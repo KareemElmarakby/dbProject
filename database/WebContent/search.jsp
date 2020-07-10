@@ -1,16 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
- <%
+<body background="http://www.teamarking.com/barcode/bar_background.jpg"> 
+
+
+ <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <title>Search For Video</title>
+
+ </head>
+  <%
             String email = request.getParameter("user");
             session.setAttribute("email", email);
         %> 
-<body>
-
-</body>
-</html>
+<form action="<%= request.getContextPath() %>/searchvideo" name="test2" method="post">
+   <table style="with: 80%">
+    <tr>
+     <td>Search</td>
+     <td><input type="text" name="search" /></td>
+    </tr>
+    </table>
+   <input type="submit" value="Submit" />
+  </form>
+    <%
+        String x = (String) application.getAttribute("id");
+    //out.println(x);
+    %>
