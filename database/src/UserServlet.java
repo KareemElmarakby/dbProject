@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static Connection connect = null;
+	private static Statement statement = null;
+	private PreparedStatement preparedStatement = null;
+	private static ResultSet resultSet = null;
     private UserDao userDao;
 
     public void init() {
@@ -81,6 +84,13 @@ public class UserServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}   
+        
+        try {
+			response.sendRedirect("StandardUserHomePage.jsp");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	protected void login(HttpServletRequest request, HttpServletResponse response)
@@ -179,12 +189,35 @@ public class UserServlet extends HttpServlet {
     private void initializeDB(HttpServletRequest request, HttpServletResponse response)
     		throws SQLException, IOException {
     	System.out.println("Initializing DB from servlet");
+    	
+    	String sql1 = "DROP DATABASE testdb";
+    	String sql2 = "CREATE DATABASE testdb";
+    	
+    	try {
+        	
+        	Class.forName("com.mysql.jdbc.Driver");
+          System.out.println("Select a table and then print out its content.");
+          connect = DriverManager
+              .getConnection("jdbc:mysql://localhost:3306/testdb?"
+                  + "user=root&password=pass123");
+          
+          statement = connect.createStatement();
+
+          statement.executeUpdate(sql1);
+          statement.executeUpdate(sql2);
+          
+        } 
+        catch (Exception e) {
+             System.out.println(e);
+        }
+    	
     	ComedianDao.InitializeDB();
     	UserDao.InitializeDB();
+    	IsFavoriteDao.InitializeDB();
     	VideoDao.InitializeDB();
     	ReviewDao.InitializeDB();
     	VideoTagsDao.InitializeDB();
-    	IsFavoriteDao.InitializeDB();
+    	
         response.sendRedirect("login.jsp");
 
     }

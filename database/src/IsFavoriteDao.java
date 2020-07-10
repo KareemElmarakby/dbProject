@@ -50,13 +50,12 @@ public class IsFavoriteDao {
     public static void InitializeDB() {
     	// TODO Auto-generated method stub
     	System.out.println("InitializeDB For IsFavorite");
-    	String sql1 = "DROP TABLE IF EXISTS IsFavorite";
         String sql2 = "CREATE TABLE IF NOT EXISTS IsFavorite" +
                        " (email VARCHAR(50), " +
                        " comid INTEGER, " + 
                        " PRIMARY KEY (email, comid), " + 
                        " FOREIGN KEY (email) REFERENCES Users(email), " +
-                       " FOREIGN KEY (comid) REFERENCES Comedians(comid)) "; 
+                       " FOREIGN KEY (comid) REFERENCES Comedians(comid))"; 
         
         try {
         	
@@ -68,7 +67,6 @@ public class IsFavoriteDao {
           
           statement = connect.createStatement();
 
-          statement.executeUpdate(sql1);
           statement.executeUpdate(sql2);
           
         } 
