@@ -179,9 +179,9 @@ public class UserServlet extends HttpServlet {
     private void initializeDB(HttpServletRequest request, HttpServletResponse response)
     		throws SQLException, IOException {
     	System.out.println("Initializing DB from servlet");
+    	ComedianDao.InitializeDB();
     	UserDao.InitializeDB();
     	VideoDao.InitializeDB();
-    	ComedianDao.InitializeDB();
     	ReviewDao.InitializeDB();
     	VideoTagsDao.InitializeDB();
     	IsFavoriteDao.InitializeDB();

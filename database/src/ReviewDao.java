@@ -60,7 +60,7 @@ public class ReviewDao {
                        " PRIMARY KEY(reviewid), " + 
                        " FOREIGN KEY(author) REFERENCES Users(email), " +
                        " FOREIGN KEY(youtubeid) REFERENCES YouTubeVideos(url), " +
-                       " CONSTRAINT ratingcr CHECK rating IN ['P', 'F','G','E'])"; 
+                       " CONSTRAINT ratingcr CHECK (rating IN ('P', 'F','G','E')))"; 
         
         String sql4 = "insert into Reviews(remark, rating, author, youtube) values (\"This video was ok\", \"G\", \"Kareem\", \"Chris Rock: Project 1 Blues\")";
         String sql5 = "insert into Reviews(remark, rating, author, youtube) values (\"This video was ok\", \"G\", \"John\", \"Chris Rock: Project 1 Blues\")";

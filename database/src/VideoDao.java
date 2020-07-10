@@ -56,24 +56,24 @@ public class VideoDao {
         String sql2 = "CREATE TABLE IF NOT EXISTS YoutubeVideos" +
                        " (url VARCHAR(50), " +
                        " title VARCHAR(50), " + 
-                       " desc VARCHAR(200), " + 
+                       " descrip VARCHAR(200), " + 
                        " comid INTEGER NOT NULL, " +
                        " postuser VARCHAR(50) NOT NULL, " +
                        " postdate DATE, " +
                        " PRIMARY KEY (url), " +
                        " FOREIGN KEY (comid) REFERENCES Comedians(comid), " +
-                       " FOREIGN KEY (postuser) REFERENCES Users(email)) "; 
+                       " FOREIGN KEY (postuser) REFERENCES Users(email))"; 
         
-        String sql4 = "insert into YoutubeVideos(url, title, desc) values (\"youtube.com/1\", \"Sketch1\", \"Description1\")";
-        String sql5 = "insert into YoutubeVideos(url, title, desc) values (\"youtube.com/2\", \"Sketch2\", \"Description2\")";
-        String sql6 = "insert into YoutubeVideos(url, title, desc) values (\"youtube.com/3\", \"Sketch3\", \"Description3\")";
-        String sql7 = "insert into YoutubeVideos(url, title, desc) values (\"youtube.com/4\", \"Sketch4\", \"Description4\")";
-        String sql8 = "insert into YoutubeVideos(url, title, desc) values (\"youtube.com/5\", \"Sketch5\", \"Description5\")";
-        String sql9 = "insert into YoutubeVideos(url, title, desc) values (\"youtube.com/6\", \"Sketch6\", \"Description6\")";
-        String sql10 = "insert into YoutubeVideos(url, title, desc) values (\"youtube.com/7\", \"Sketch7\", \"Description7\")";
-        String sql11 = "insert into YoutubeVideos(url, title, desc) values (\"youtube.com/8\", \"Sketch8\", \"Description8\")";
-        String sql12 = "insert into YoutubeVideos(url, title, desc) values (\"youtube.com/9\", \"Sketch9\", \"Description9\")";
-        String sql13 = "insert into YoutubeVideos(url, title, desc) values (\"youtube.com/10\", \"Sketch10\", \"Description10\")";
+        String sql4 = "insert into YoutubeVideos(url, title, descrip) values (\"youtube.com/1\", \"Sketch1\", \"Description1\")";
+        String sql5 = "insert into YoutubeVideos(url, title, descrip) values (\"youtube.com/2\", \"Sketch2\", \"Description2\")";
+        String sql6 = "insert into YoutubeVideos(url, title, descrip) values (\"youtube.com/3\", \"Sketch3\", \"Description3\")";
+        String sql7 = "insert into YoutubeVideos(url, title, descrip) values (\"youtube.com/4\", \"Sketch4\", \"Description4\")";
+        String sql8 = "insert into YoutubeVideos(url, title, descrip) values (\"youtube.com/5\", \"Sketch5\", \"Description5\")";
+        String sql9 = "insert into YoutubeVideos(url, title, descrip) values (\"youtube.com/6\", \"Sketch6\", \"Description6\")";
+        String sql10 = "insert into YoutubeVideos(url, title, descrip) values (\"youtube.com/7\", \"Sketch7\", \"Description7\")";
+        String sql11 = "insert into YoutubeVideos(url, title, descrip) values (\"youtube.com/8\", \"Sketch8\", \"Description8\")";
+        String sql12 = "insert into YoutubeVideos(url, title, descrip) values (\"youtube.com/9\", \"Sketch9\", \"Description9\")";
+        String sql13 = "insert into YoutubeVideos(url, title, descrip) values (\"youtube.com/10\", \"Sketch10\", \"Description10\")";
         
         try {
         	

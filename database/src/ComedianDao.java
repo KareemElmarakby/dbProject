@@ -52,7 +52,7 @@ public class ComedianDao {
     	System.out.println("InitializeDB For Comedians");
     	String sql1 = "DROP TABLE IF EXISTS Comedians";
         String sql2 = "CREATE TABLE IF NOT EXISTS Comedians" +
-                       " (comid INTEGER, " +
+                       " (comid INTEGER NOT NULL AUTO_INCREMENT, " +
                        " firstname VARCHAR(50), " + 
                        " lastname VARCHAR(50), " + 
                        " birthday DATE, " +
