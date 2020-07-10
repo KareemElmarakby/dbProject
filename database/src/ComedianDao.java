@@ -58,16 +58,16 @@ public class ComedianDao {
                        " birthplace VARCHAR(50), " + 
                        " PRIMARY KEY (comid)) "; 
         
-        String sql3 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First1\", \"Last1\", \"DATE '2013-11-26'\", \"Dakota\")";
-        String sql4 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First2\", \"Last2\", \"DATE '2013-11-26'\", \"Michigan\")";
-        String sql5 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First3\", \"Last3\", \"DATE '2013-11-26'\", \"Texas\")";
-        String sql6 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First4\", \"Last4\", \"DATE '2013-11-26'\", \"Maine\")";
-        String sql7 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First5\", \"Last5\", \"DATE '2013-11-26'\", \"Washington\")";
-        String sql8 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First6\", \"Last6\", \"DATE '2013-11-26'\", \"New York\")";
-        String sql9 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First7\", \"Last7\", \"DATE '2013-11-26'\", \"Florida\")";
-        String sql10 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First8\", \"Last8\", \"DATE '2013-11-26'\", \"California\")";
-        String sql11 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First9\", \"Last9\", \"DATE '2013-11-26'\", \"Kansas\")";
-        String sql12 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First10\", \"Last10\", \"DATE '2013-11-26'\", \"Tennessee\")";
+        String sql3 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First1\", \"Last1\", \"1984-02-14\", \"Dakota\")";
+        String sql4 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First2\", \"Last2\", \"1984-03-14\", \"Michigan\")";
+        String sql5 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First3\", \"Last3\", \"1984-04-14\", \"Texas\")";
+        String sql6 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First4\", \"Last4\", \"1984-05-14\", \"Maine\")";
+        String sql7 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First5\", \"Last5\", \"1984-06-14\", \"Washington\")";
+        String sql8 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First6\", \"Last6\", \"1984-07-14\", \"New York\")";
+        String sql9 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First7\", \"Last7\", \"1984-08-14\", \"Florida\")";
+        String sql10 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First8\", \"Last8\", \"1984-09-14\", \"California\")";
+        String sql11 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First9\", \"Last9\", \"1984-10-14\", \"Kansas\")";
+        String sql12 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First10\", \"Last10\", \"1984-11-14\", \"Tennessee\")";
         
         try {
         	
