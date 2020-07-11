@@ -82,15 +82,22 @@ public class UserServlet extends HttpServlet {
         
         
         Review re = new Review(remark, rating, author, youtube);
+        ReviewDao.logreview(re);  
         
-        ReviewDao.logreview(re);   //UNDER CONSTRUCTION
 	}
 		
 
-	private void results(HttpServletRequest request, HttpServletResponse response) {
-        String search = request.getParameter("search");
+	private void results(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+        try {
+        	String search = request.getParameter("search");
         
-        SearchDao.showResults(search);   
+        	request.setAttribute("search", search);       
+            RequestDispatcher dispatcher = request.getRequestDispatcher("result.jsp");       
+            dispatcher.forward(request, response);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}   
 	}
 	
 

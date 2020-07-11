@@ -61,7 +61,7 @@ public class SearchDao{
 			ResultSet rs;
 			String searching = search;
 
-			PreparedStatement ps = connect.prepareStatement("select url,title from YoutubeVideos where (Comedians.firstname=? OR Comedians.lastname=? OR VideoTags.tag=?) "
+			PreparedStatement ps = connect.prepareStatement("select url,title from YoutubeVideos where (Comedians.firstname LIKE ? OR Comedians.lastname LIKE ? OR VideoTags.tag=?) "
          		+ "AND (YoutubeVideos.url = VideoTags.url OR YoutubeVideos.comid = Comedians.comid);");
 			ps.setString(1, searching);
 			ps.setString(2, searching);
