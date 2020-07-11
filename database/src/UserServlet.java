@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -116,10 +117,22 @@ public class UserServlet extends HttpServlet {
           ResultSet rs = statement.executeQuery(sq1);
           
           int count = 0;
-          
+             
           while(rs.next()) {
-        	  String stringUrl = rs.getString("url");
-        	  System.out.println(stringUrl);
+        	  System.out.println(count);
+        	  if (count >= 5) {
+        		  System.out.println("TOO MANY");
+        		  response.sendRedirect("TooManyVideos.jsp");
+        		  return;
+        	  }
+        	  String dateUrl = rs.getString(2);
+        	  String userUrl = rs.getString(1);
+        	  String dateUrlArr[] = dateUrl.split(" ");
+        	  System.out.println("Local: " + java.time.LocalDate.now().toString());
+        	  System.out.println("Server: " + dateUrlArr[0]);
+        	  if (dateUrlArr[0].equalsIgnoreCase(java.time.LocalDate.now().toString())){
+        		  count++;
+        	  }
           }
           
         } 

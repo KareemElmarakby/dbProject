@@ -53,23 +53,25 @@ public class UserDao {
         String sql2 = "CREATE TABLE IF NOT EXISTS Users " +
                        "(email VARCHAR(50), " +
                        "pass VARCHAR(50), " + 
-                       "first VARCHAR(50), " + 
-                       "last VARCHAR(50), " +
+                       "firstN VARCHAR(50), " + 
+                       "lastN VARCHAR(50), " +
                        "gender CHAR(1), " + 
                        "age INTEGER, " +
                        "PRIMARY KEY (email))";
         
-        String sql3 = "insert into Users(email, pass, first, last, gender, age) values (\"user1@gmail.com\", \"secretpassword1\", \"Kareem\", \"First\", \"m\", \"21\")";
-        String sql4 = "insert into Users(email, pass, first, last, gender, age) values (\"user2@gmail.com\", \"secretpassword2\", \"John\", \"Second\", \"f\", \"23\")";
-        String sql5 = "insert into Users(email, pass, first, last, gender, age) values (\"user3@gmail.com\", \"secretpassword3\", \"Joe\", \"Third\", \"m\", \"55\")";
-        String sql6 = "insert into Users(email, pass, first, last, gender, age) values (\"user4@gmail.com\", \"secretpassword4\", \"Dan\", \"Fourth\", \"f\", \"33\")";
-        String sql7 = "insert into Users(email, pass, first, last, gender, age) values (\"user5@gmail.com\", \"secretpassword5\", \"Bob\", \"Fifth\", \"m\", \"12\")";
-        String sql8 = "insert into Users(email, pass, first, last, gender, age) values (\"user6@gmail.com\", \"secretpassword6\", \"Chase\", \"Sixth\", \"f\", \"56\")";
-        String sql9 = "insert into Users(email, pass, first, last, gender, age) values (\"user7@gmail.com\", \"secretpassword7\", \"Tahmid\", \"Seventh\", \"m\", \"4\")";
-        String sql10 = "insert into Users(email, pass, first, last, gender, age) values (\"user8@gmail.com\", \"secretpassword8\", \"Chris\", \"Eight\", \"f\", \"75\")";
-        String sql11 = "insert into Users(email, pass, first, last, gender, age) values (\"user9@gmail.com\", \"secretpassword9\", \"Mike\", \"Ninth\", \"m\", \"13\")";
-        String sql12 = "insert into Users(email, pass, first, last, gender, age) values (\"user10@gmail.com\", \"secretpassword10\", \"Amanda\", \"Tenth\", \"f\", \"18\")";
+        String sql3 = "insert into Users(email, pass, firstN, lastN, gender, age) values (\"user1@gmail.com\", \"secretpassword1\", \"Kareem\", \"First\", \"m\", \"21\")";
+        String sql4 = "insert into Users(email, pass, firstN, lastN, gender, age) values (\"user2@gmail.com\", \"secretpassword2\", \"John\", \"Second\", \"f\", \"23\")";
+        String sql5 = "insert into Users(email, pass, firstN, lastN, gender, age) values (\"user3@gmail.com\", \"secretpassword3\", \"Joe\", \"Third\", \"m\", \"55\")";
+        String sql6 = "insert into Users(email, pass, firstN, lastN, gender, age) values (\"user4@gmail.com\", \"secretpassword4\", \"Dan\", \"Fourth\", \"f\", \"33\")";
+        String sql7 = "insert into Users(email, pass, firstN, lastN, gender, age) values (\"user5@gmail.com\", \"secretpassword5\", \"Bob\", \"Fifth\", \"m\", \"12\")";
+        String sql8 = "insert into Users(email, pass, firstN, lastN, gender, age) values (\"user6@gmail.com\", \"secretpassword6\", \"Chase\", \"Sixth\", \"f\", \"56\")";
+        String sql9 = "insert into Users(email, pass, firstN, lastN, gender, age) values (\"user7@gmail.com\", \"secretpassword7\", \"Tahmid\", \"Seventh\", \"m\", \"4\")";
+        String sql10 = "insert into Users(email, pass, firstN, lastN, gender, age) values (\"user8@gmail.com\", \"secretpassword8\", \"Chris\", \"Eight\", \"f\", \"75\")";
+        String sql11 = "insert into Users(email, pass, firstN, lastN, gender, age) values (\"user9@gmail.com\", \"secretpassword9\", \"Mike\", \"Ninth\", \"m\", \"13\")";
+        String sql12 = "insert into Users(email, pass, firstN, lastN, gender, age) values (\"user10@gmail.com\", \"secretpassword10\", \"Amanda\", \"Tenth\", \"f\", \"18\")";
 
+        String sql13 = "ALTER TABLE Users ADD FullName VARCHAR(50)";
+        String sql14 = "UPDATE Users SET FullName = CONCAT(firstN,' ',lastN)";
         try {
         	Class.forName("com.mysql.jdbc.Driver");
 		  System.out.println("Select a table and then print out its content.");
@@ -89,6 +91,8 @@ public class UserDao {
 		  statement.executeUpdate(sql10);
 		  statement.executeUpdate(sql11);
 		  statement.executeUpdate(sql12);
+		  statement.executeUpdate(sql13);
+		  statement.executeUpdate(sql14);
 		  
 		  System.out.println("AFTER INIT EXECUTION");
         } 
