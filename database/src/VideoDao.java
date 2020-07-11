@@ -57,7 +57,7 @@ public class VideoDao {
                        " descrip VARCHAR(200), " + 
                        " comid INT NOT NULL AUTO_INCREMENT, " +
                        " postuser VARCHAR(50) NOT NULL DEFAULT 'Joe Smith', " +
-                       " postdate DATE, " +
+                       " postdate DATETIME DEFAULT NOW(), " +
                        " PRIMARY KEY (url), " +
                        " FOREIGN KEY (comid) REFERENCES Comedians(comid), " +
                        " FOREIGN KEY (postuser) REFERENCES Users(email))"; 
