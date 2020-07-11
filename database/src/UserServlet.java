@@ -102,6 +102,31 @@ public class UserServlet extends HttpServlet {
         String tags = request.getParameter("tags");
         String comedian = request.getParameter("com");
         
+    	try {
+        	String sq1 = "SELECT postuser, postdate FROM youtubevideos";
+        			
+        	Class.forName("com.mysql.jdbc.Driver");
+          System.out.println("Select a table and then print out its content.");
+          connect = DriverManager
+              .getConnection("jdbc:mysql://localhost:3306/testdb?"
+                  + "user=root&password=pass123");
+          
+          statement = connect.createStatement();
+          
+          ResultSet rs = statement.executeQuery(sq1);
+          
+          int count = 0;
+          
+          while(rs.next()) {
+        	  String stringUrl = rs.getString("url");
+        	  System.out.println(stringUrl);
+          }
+          
+        } 
+        catch (Exception e) {
+             System.out.println(e);
+        }
+        /*
         Video yt = new Video(user, url, title, desc, comedian);
         VideoTags ytTags = new VideoTags(url, tags);
         
@@ -112,7 +137,7 @@ public class UserServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}   
-        
+        */
         try {
 			response.sendRedirect("StandardUserHomePage.jsp");
 		} catch (IOException e) {
@@ -129,10 +154,6 @@ public class UserServlet extends HttpServlet {
     	System.out.println(username);
     	System.out.println(password);
     	try {
-    	 /*   connect = DriverManager
-    	              .getConnection("jdbc:mysql://localhost:3306/testdb?"
-    	                  + "user=root&password=pass123");
-    	                  userDao.userCheck(username, password */
         	if(username.equals("root") && password.equals("pass123"))
         		response.sendRedirect("RootHomePage.jsp");
         	else
