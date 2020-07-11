@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<body background="http://www.teamarking.com/barcode/bar_background.jpg"> 
+<body> 
 
 
  <head>

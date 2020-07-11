@@ -61,7 +61,7 @@ public class UserServlet extends HttpServlet {
             case "/searchvideo":
             	results(request, response);
             	break;
-            case "/review":
+            case "/logreview":
             	review(request, response);
             	break;
             default:          	
@@ -78,7 +78,7 @@ public class UserServlet extends HttpServlet {
         String rating = request.getParameter("rating");
         HttpSession session = request.getSession();
         String author = (String)session.getAttribute("email");
-        String youtube = (String)session.getAttribute("url");
+        String youtube = request.getParameter("url");
         
         
         Review re = new Review(remark, rating, author, youtube);

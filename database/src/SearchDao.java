@@ -73,16 +73,13 @@ public class SearchDao{
 				String url = rs.getString("url");
 				String title = rs.getString("title");
 				
-				System.out.println("<tr>");
-				System.out.println("<td>" + url + "</td>");
+				System.out.println("<tr><form action='<%= request.getContextPath() %>/logreview'>");
+				System.out.println("<td>" + url + "</td><input type=\"hidden\" name=\"url\" value=\"" + url + "\"/>");
 				System.out.println("<td>" + title + "</td>");
-				System.out.println("<form action='<%= request.getContextPath() %>/logreview'><td>" + 
+				System.out.println("<td>" + 
 				"<select name='rating'><option value='p'>P</option><option value='f'>F</option><option value='g'>G</option><option value='E'>E</option></select>"
 						+"</td>");
-				System.out.println("<td><input type='text' name='comment'></td><td><input type='submit' value='Submit Review'></td></form>" + 
-						"            \r\n" + 
-						"            String url = request.getParameter(\"url\");\r\n" + 
-						"            session.setAttribute(\"url\", url);");
+				System.out.println("<td><input type='text' name='comment'></td><td><input type='submit' value='Submit Review'></td></form>");
 				System.out.println("</tr>");
           }
          	 	st.close();

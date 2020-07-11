@@ -116,7 +116,7 @@ public class VideoTagsDao {
 		int i = 0;
 		String[] tagSet = tags.getTags();
 		
-		while(i < tagSet.length) {
+		while(i < (tagSet.length - 1)) {
 			preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
 			preparedStatement.setString(1, tagSet[i]);
 			preparedStatement.executeUpdate();

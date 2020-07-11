@@ -17,13 +17,16 @@
             session.setAttribute("email", email);
 
         %> 
-    <center>    
+ 
         <table>
+        <tr>
             <th>URLs</th>
 			<th>Title</th>
 			<th>Rating</th>
 			<th>Comments</th>
-
+			<th>Submit</th>
+		</tr>
+		<% SearchDao.showResults(request.getParameter("search")); %>
         </table>
 
         <br>
