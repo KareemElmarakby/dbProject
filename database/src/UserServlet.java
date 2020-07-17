@@ -65,6 +65,9 @@ public class UserServlet extends HttpServlet {
             case "/logreview":
             	review(request, response);
             	break;
+            case "/displaytrends":
+            	trends(request, response);
+            	break;
             default:          	
             	listPeople(request, response);           	
                 break;
@@ -74,7 +77,51 @@ public class UserServlet extends HttpServlet {
         }
     }
     
-    private void review(HttpServletRequest request, HttpServletResponse response) {
+    private void trends(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	String submit = request.getParameter("Submit");
+    	
+    	try {
+    		switch (submit) {
+    		case "cool":
+    			DisplayDao.whosCool();
+    			break;
+    		case "new":
+    			DisplayDao.whosNew();
+    			break;
+    		case "hot":
+    			DisplayDao.whosHot();
+    			break;
+    		case "top":
+    			DisplayDao.whosTop();
+    			break;
+    		case "tags":
+    			DisplayDao.popularTags();
+    			break;
+    		case "favorite":
+    			DisplayDao.favComedian();
+    			break;
+    		case "productive":
+    			DisplayDao.productive();
+    			break;
+    		case "reviewers":
+    			DisplayDao.positiveReviewers();
+    			break;
+    		case "poor":
+    			DisplayDao.poorYoutubes();
+    			break;
+    		case "twins":
+    			DisplayDao.twinUsers();
+    			break;
+    		}
+    		
+    	}
+    	catch (Exception e) {
+            System.out.println(e);
+    	}
+		
+	}
+
+	private void review(HttpServletRequest request, HttpServletResponse response) {
         String remark = request.getParameter("comment");
         String rating = request.getParameter("rating");
         HttpSession session = request.getSession();
