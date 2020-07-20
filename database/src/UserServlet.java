@@ -78,46 +78,9 @@ public class UserServlet extends HttpServlet {
     }
     
     private void trends(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	String submit = request.getParameter("Submit");
-    	
-    	try {
-    		switch (submit) {
-    		case "cool":
-    			DisplayDao.whosCool();
-    			break;
-    		case "new":
-    			DisplayDao.whosNew();
-    			break;
-    		case "hot":
-    			DisplayDao.whosHot();
-    			break;
-    		case "top":
-    			DisplayDao.whosTop();
-    			break;
-    		case "tags":
-    			DisplayDao.popularTags();
-    			break;
-    		case "favorite":
-    			DisplayDao.favComedian();
-    			break;
-    		case "productive":
-    			DisplayDao.productive();
-    			break;
-    		case "reviewers":
-    			DisplayDao.positiveReviewers();
-    			break;
-    		case "poor":
-    			DisplayDao.poorYoutubes();
-    			break;
-    		case "twins":
-    			DisplayDao.twinUsers();
-    			break;
-    		}
-    		
-    	}
-    	catch (Exception e) {
-            System.out.println(e);
-    	}
+
+    	RequestDispatcher dispatcher = request.getRequestDispatcher("rootDisplayResults.jsp");
+        dispatcher.forward(request, response);
 		
 	}
 
