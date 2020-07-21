@@ -52,22 +52,40 @@ public class DisplayDao {
       }
     
 	public static String whosCool() {
-		String sql = "";
+		String sql = "SELECT firstname, lastname FROM comedians " + 
+					 "LEFT JOIN youtubevideos on comedians.comid = youtubevideos.comid " + 
+					 "LEFT JOIN reviews on youtubevideos.url = reviews.youtubeid " + 
+					 "WHERE reviewid IS NOT NULL AND rating = 'E'";
 		return sql;
 	}
 	
 	public static String whosNew() {
-		String sql = "";
+		String sql = "SELECT firstname, lastname FROM comedians " + 
+					 "LEFT JOIN youtubevideos on comedians.comid = youtubevideos.comid " + 
+				     "WHERE DATE(postdate) = curdate()";
 		return sql;
 	}
 
 	public static String whosHot() {
-		String sql = "";
+		String sql = "SELECT firstname, lastname, COUNT(rating) FROM comedians " + 
+					 "LEFT JOIN youtubevideos on comedians.comid = youtubevideos.comid " + 
+					 "LEFT JOIN reviews on youtubevideos.url = reviews.youtubeid " + 
+					 "WHERE reviewid IS NOT NULL AND rating = 'E' " + 
+					 "GROUP BY comedians.firstname " + 
+					 "ORDER BY COUNT(rating) DESC LIMIT 3";
 		return sql;
 	}
 	
-	public static String whosTop() {
-		String sql = "";
+	public static String whosTop() { // CASE statement is not working, don't know why. Once syntax error is resolved this should work
+		String sql = "SELECT firstname, lastname, COUNT(url) FROM comedians " + 
+					 "LEFT JOIN youtubevideos on comedians.comid = youtubevideos.comid " + 
+					 "LEFT JOIN reviews on youtubevideos.url = reviews.youtubeid " + 
+					 "WHERE reviewid IS NOT NULL " + 
+					 "GROUP BY comedians.firstname " + 
+					 "ORDER BY COUNT(url) DESC " + 
+					 "CASE " + 
+					 "WHEN COUNT(DISTINCT url) = COUNT(url) THEN LIMIT 1 " + 
+					 "END CASE";
 		return sql;
 	}
 	
@@ -82,17 +100,42 @@ public class DisplayDao {
 	}
 	
 	public static String productive() {
-		String sql = "";
+		String sql = "SELECT email, COUNT(url) " + 
+					 "FROM youtubevideos " + 
+					 "LEFT JOIN users on youtubevideos.postuser = users.email " + 
+					 "WHERE email IS NOT NULL " + 
+					 "GROUP BY users.email " + 
+					 "ORDER BY COUNT(url) DESC " + 
+					 "CASE " + 
+					 "	WHEN COUNT(DISTINCT url) = COUNT(url) THEN LIMIT 1 " + 
+					 "END";
+		
+		/*
+		 * THIS QUERY IS TO RETURN THE LIST OF YOURTUBE LINKS FROM A SPECIFIC USER. REPLACE XXXXX with Users.email of the desired user
+		 * 
+		  SELECT url 
+		  FROM youtubevideos
+          LEFT JOIN users on youtubevideos.postuser = users.email
+          WHERE postuser = "XXXXX"
+		 * 
+		 */
+		
 		return sql;
 	}
 	
 	public static String positiveReviewers() {
-		String sql = "";
+		String sql = "SELECT firstN, lastN " + 
+					 "FROM users " + 
+					 "LEFT JOIN reviews on reviews.author = users.firstN " + 
+					 "WHERE rating = 'G' OR rating = 'E'";
 		return sql;
 	}
 	
 	public static String poorYoutubes() {
-		String sql = "";
+		String sql = "SELECT url " + 
+					 "FROM youtubevideos " + 
+					 "LEFT JOIN reviews on youtubevideos.url = reviews.youtubeid " + 
+					 "WHERE rating = 'P'";
 		return sql;
 	}
 	
