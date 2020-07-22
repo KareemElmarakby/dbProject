@@ -51,7 +51,7 @@ public class DisplayDao {
         }
       }
     
-	public static String whosCool() {
+	public static String whosCool() { // WORKING
 		String sql = "SELECT firstname, lastname FROM comedians " + 
 					 "LEFT JOIN youtubevideos on comedians.comid = youtubevideos.comid " + 
 					 "LEFT JOIN reviews on youtubevideos.url = reviews.youtubeid " + 
@@ -59,14 +59,14 @@ public class DisplayDao {
 		return sql;
 	}
 	
-	public static String whosNew() {
+	public static String whosNew() { // WORKING
 		String sql = "SELECT firstname, lastname FROM comedians " + 
 					 "LEFT JOIN youtubevideos on comedians.comid = youtubevideos.comid " + 
 				     "WHERE DATE(postdate) = curdate()";
 		return sql;
 	}
 
-	public static String whosHot() {
+	public static String whosHot() { // WORKING
 		String sql = "SELECT firstname, lastname, COUNT(rating) FROM comedians " + 
 					 "LEFT JOIN youtubevideos on comedians.comid = youtubevideos.comid " + 
 					 "LEFT JOIN reviews on youtubevideos.url = reviews.youtubeid " + 
@@ -108,7 +108,7 @@ public class DisplayDao {
 		return sql;
 	}
 	
-	public static String productive() {
+	public static String productive() { // CASE statement syntax problems
 		String sql = "SELECT email, COUNT(url) " + 
 					 "FROM youtubevideos " + 
 					 "LEFT JOIN users on youtubevideos.postuser = users.email " + 
@@ -132,7 +132,7 @@ public class DisplayDao {
 		return sql;
 	}
 	
-	public static String positiveReviewers() {
+	public static String positiveReviewers() { // WORKING
 		String sql = "SELECT firstN, lastN " + 
 					 "FROM users " + 
 					 "LEFT JOIN reviews on reviews.author = users.firstN " + 
@@ -140,7 +140,7 @@ public class DisplayDao {
 		return sql;
 	}
 	
-	public static String poorYoutubes() {
+	public static String poorYoutubes() { // WORKING
 		String sql = "SELECT url " + 
 					 "FROM youtubevideos " + 
 					 "LEFT JOIN reviews on youtubevideos.url = reviews.youtubeid " + 
