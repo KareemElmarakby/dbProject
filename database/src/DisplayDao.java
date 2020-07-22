@@ -89,13 +89,22 @@ public class DisplayDao {
 		return sql;
 	}
 	
-	public static String popularTags() {
-		String sql = "";
+	public static String popularTags() { // SHOULD work but needs further testing and debugging
+		String sql = "SELECT tag " + 
+					 "FROM videotags " + 
+					 "WHERE((SELECT COUNT(url) FROM Users) = (SELECT COUNT(url) FROM videotags))";
 		return sql;
 	}
 	
-	public static String favComedian() {
-		String sql = "";
+	public static String favComedian() { // NOT CURRENTLY WORKING !!!
+		String sql = "SELECT firstname, lastname " + 
+					 "FROM comedians " + 
+					 "LEFT JOIN isfavorite ON comedians.comid = isfavorite.comid " + 
+					 "WHERE comedians.comid = isfavorite.comid " + 
+					 "AND IN " + 
+					 "(SELECT isfavorite.comid " + 
+					 "FROM isfavorite " + 
+					 "WHERE isfavorite.email = 'user1@gmail.com' AND isfavorite.email = 'user2@gmail.com')";
 		return sql;
 	}
 	
