@@ -80,7 +80,7 @@ public class UserServlet extends HttpServlet {
     private void trends(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String user1 = request.getParameter("user1");
     	String user2 = request.getParameter("user2");
-    	RequestDispatcher dispatcher = request.getRequestDispatcher("rootDisplayResults.jsp");
+    	RequestDispatcher dispatcher = request.getRequestDispatcher("rootDisplaysResults.jsp");
         dispatcher.forward(request, response);
 		
 	}

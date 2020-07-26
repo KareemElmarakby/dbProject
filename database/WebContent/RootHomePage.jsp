@@ -9,6 +9,8 @@
 </head>
 <body>
    	 <a href="initialize">Initialize Database</a>
+   	 <br><a href="rootDisplays.jsp">Display trends</a>
    	 <br><a href="login.jsp">Click here to go back to login</a>
+
 </body>
 </html>

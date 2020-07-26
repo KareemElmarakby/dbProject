@@ -20,41 +20,90 @@
                     ResultSet rs = null;
                     int i = 1; //set these for how many results we're printing
                     int valueSet = 0;
-                    
+                    String sql = null;
                     
                     try {
                     	String check = request.getParameter("Submit");
                 		switch (check) {
                 		case "cool":
-                			rs = st.executeQuery(DisplayDao.whosCool());
+                			rs = st.executeQuery("SELECT firstname, lastname FROM comedians " + 
+               					 "LEFT JOIN youtubevideos on comedians.comid = youtubevideos.comid " + 
+            					 "LEFT JOIN reviews on youtubevideos.url = reviews.youtubeid " + 
+            					 "WHERE reviewid IS NOT NULL AND rating = 'E'");
                 			valueSet = 3;
                 			break;
                 		case "new":
-                			rs = st.executeQuery(DisplayDao.whosNew());
+                			rs = st.executeQuery("SELECT firstname, lastname FROM comedians " + 
+               					 "LEFT JOIN youtubevideos on comedians.comid = youtubevideos.comid " + 
+            				     "WHERE DATE(postdate) = curdate()");
+                			valueSet = 2;
                 			break;
                 		case "hot":
-                			rs = st.executeQuery(DisplayDao.whosHot());
+                			rs = st.executeQuery("SELECT firstname, lastname, COUNT(rating) FROM comedians " + 
+               					 "LEFT JOIN youtubevideos on comedians.comid = youtubevideos.comid " + 
+            					 "LEFT JOIN reviews on youtubevideos.url = reviews.youtubeid " + 
+            					 "WHERE reviewid IS NOT NULL AND rating = 'E' " + 
+            					 "GROUP BY comedians.firstname " + 
+            					 "ORDER BY COUNT(rating) DESC LIMIT 3");
+                			valueSet = 3;
                 			break;
                 		case "top":
-                			rs = st.executeQuery(DisplayDao.whosTop());
+                			rs = st.executeQuery("SELECT firstname, lastname, COUNT(url) FROM comedians " + 
+               					 "LEFT JOIN youtubevideos on comedians.comid = youtubevideos.comid " + 
+            					 "LEFT JOIN reviews on youtubevideos.url = reviews.youtubeid " + 
+            					 "WHERE reviewid IS NOT NULL " + 
+            					 "GROUP BY comedians.firstname " + 
+            					 "ORDER BY COUNT(url) DESC " + 
+            					 "CASE " + 
+            					 "WHEN COUNT(DISTINCT url) = COUNT(url) THEN LIMIT 1 " + 
+            					 "END CASE");
+                			valueSet = 3;
                 			break;
                 		case "tags":
-                			rs = st.executeQuery(DisplayDao.popularTags());
+                			rs = st.executeQuery("SELECT tag " + 
+               					 "FROM videotags " + 
+            					 "WHERE((SELECT COUNT(url) FROM Users) = (SELECT COUNT(url) FROM videotags))");
+                			valueSet = 1;
                 			break;
                 		case "favorite":
-                			rs = st.executeQuery(DisplayDao.favComedian());
+                			rs = st.executeQuery("SELECT firstname, lastname " + 
+               					 "FROM comedians " + 
+            					 "LEFT JOIN isfavorite ON comedians.comid = isfavorite.comid " + 
+            					 "WHERE comedians.comid = isfavorite.comid " + 
+            					 "AND IN " + 
+            					 "(SELECT isfavorite.comid " + 
+            					 "FROM isfavorite " + 
+            					 "WHERE isfavorite.email = 'user1@gmail.com' AND isfavorite.email = 'user2@gmail.com')");
+                			valueSet = 2;
                 			break;
                 		case "productive":
-                			rs = st.executeQuery(DisplayDao.productive());
+                			rs = st.executeQuery("SELECT email, COUNT(url) " + 
+               					 "FROM youtubevideos " + 
+            					 "LEFT JOIN users on youtubevideos.postuser = users.email " + 
+            					 "WHERE email IS NOT NULL " + 
+            					 "GROUP BY users.email " + 
+            					 "ORDER BY COUNT(url) DESC " + 
+            					 "CASE " + 
+            					 "	WHEN COUNT(DISTINCT url) = COUNT(url) THEN LIMIT 1 " + 
+            					 "END");
+                			valueSet = 2;
                 			break;
                 		case "reviewers":
-                			rs = st.executeQuery(DisplayDao.positiveReviewers());
+                			rs = st.executeQuery("SELECT firstN, lastN " + 
+               					 "FROM users " + 
+            					 "LEFT JOIN reviews on reviews.author = users.firstN " + 
+            					 "WHERE rating = 'G' OR rating = 'E'");
+                			valueSet = 2;
                 			break;
                 		case "poor":
-                			rs = st.executeQuery(DisplayDao.poorYoutubes());
+                			rs = st.executeQuery("SELECT url " + 
+               					 "FROM youtubevideos " + 
+            					 "LEFT JOIN reviews on youtubevideos.url = reviews.youtubeid " + 
+            					 "WHERE rating = 'P'");
+                			valueSet = 1;
                 			break;
                 		case "twins":
-                			rs = st.executeQuery(DisplayDao.twinUsers());
+                			//rs = st.executeQuery(DisplayDao.twinUsers());
                 			break;
                 		}
                         		
@@ -75,7 +124,7 @@
                         {  
                 %>          <tr>
                 <% 
-                			while(i<valueSet){
+                			while(i<valueSet+1){
                 %>
                 				<td> <%= rs.getString(i) %> </td>
                 <% 			i++; }

@@ -12,6 +12,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+//
+// Page only to be used currently to denote which queries work and which dont!
+//
+
 public class DisplayDao {
 	private static final long serialVersionUID = 1L;
 	private static Connection connect = null;

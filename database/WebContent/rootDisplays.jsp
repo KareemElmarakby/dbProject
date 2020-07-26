@@ -33,7 +33,7 @@
      <td><input type="submit" value="tags" name="Submit" /></td>
     </tr>
     <tr>
-     <td>Common Favorite Comedian</td>
+     <td>Common Favorite Comedians</td>
      <td><input type="submit" value="favorite" name="Submit" /></td>
      <%Class.forName("com.mysql.jdbc.Driver"); 
      Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/testdb?"
