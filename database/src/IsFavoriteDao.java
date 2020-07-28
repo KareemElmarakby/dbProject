@@ -63,7 +63,7 @@ public class IsFavoriteDao {
         String sql5 = "insert into IsFavorite(email, comid) values (\"user1@gmail.com\", \"6\")";
         String sql6 = "insert into IsFavorite(email, comid) values (\"user3@gmail.com\", \"7\")";
         String sql7 = "insert into IsFavorite(email, comid) values (\"user2@gmail.com\", \"3\")";
-        String sql8 = "insert into IsFavorite(email, comid) values (\"user2@gmail.com\", \"2\")";
+        String sql8 = "insert into IsFavorite(email, comid) values (\"user2@gmail.com\", \"7\")";
         String sql9 = "insert into IsFavorite(email, comid) values (\"user2@gmail.com\", \"1\")";
         String sql10 = "insert into IsFavorite(email, comid) values (\"user4@gmail.com\", \"7\")";
         
