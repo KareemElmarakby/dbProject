@@ -19,6 +19,7 @@
                     Statement st= con.createStatement(); 
                     ResultSet rs = null;
                     String sql = null;
+                    boolean twinFormat = false;
                     
                     try {
                     	String check = request.getParameter("Submit");
@@ -88,6 +89,7 @@
             					 "WHERE rating = 'P'");
                 			break;
                 		case "twins":
+                			twinFormat = true;
                 			rs = st.executeQuery("SELECT DISTINCT IsFavorite1.email, IsFavorite2.email" +
                 				 "from IsFavorite IsFavorite1 " +
                 				 "JOIN isFavorite IsFavorite2 " +
@@ -115,6 +117,24 @@
                     ResultSetMetaData metadata = rs.getMetaData();
                     int numberOfColumns = metadata.getColumnCount();
 				
+                    if (twinFormat){
+                    	if (rs.isBeforeFirst()){
+                            %>
+                                    <table>
+                            <%  while(rs.next()) {
+                            			int i = 1;%>
+                                      <tr> 
+                                      	<% while(i <= numberOfColumns){ %>
+                            	  		<td> <%= rs.getString(i) %> </td>
+                            			<% 		i++; }  %>
+                            		  </tr>
+                            <% }} 
+                            	else{ out.println("No Results Found");}%>
+
+                                    </table> 
+                    }
+                    
+                    else{
                     if (rs.isBeforeFirst()){
                 %>
                         <table>
@@ -129,6 +149,7 @@
                 	else{ out.println("No Results Found");}%>
 
                         </table>  
+                        <%} %>
     <a href="rootDisplays.jsp">Return To Root Functions</a>                   
     </body>
 </html>
