@@ -65,16 +65,16 @@ public class ReviewDao {
                        " FOREIGN KEY(youtubeid) REFERENCES YouTubeVideos(url), " +
                        " CONSTRAINT ratingcr CHECK (rating IN ('P', 'F','G','E')))"; 
         
-        String sql3 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was ok\", \"G\", \"user2@gmail.com\", \"youtube.com/3\")";
+        String sql3 = "insert into Reviews(remark, rating, author, youtubeid) values (\"It was aight\", \"G\", \"user2@gmail.com\", \"youtube.com/3\")";
         String sql4 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was ok\", \"E\", \"user3@gmail.com\", \"youtube.com/1\")";
-        String sql5 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was ok\", \"F\", \"user9@gmail.com\", \"youtube.com/2\")";
-        String sql6 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was ok\", \"P\", \"user7@gmail.com\", \"youtube.com/4\")";
-        String sql7 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was ok\", \"G\", \"user6@gmail.com\", \"youtube.com/5\")";
-        String sql8 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was ok\", \"E\", \"user1@gmail.com\", \"youtube.com/6\")";
-        String sql9 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was ok\", \"F\", \"user5@gmail.com\", \"youtube.com/7\")";
-        String sql10 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was ok\", \"P\", \"user6@gmail.com\", \"youtube.com/8\")";
-        String sql11 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was ok\", \"G\", \"user3@gmail.com\", \"youtube.com/9\")";
-        String sql12 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was ok\", \"G\", \"user3@gmail.com\", \"youtube.com/10\")";
+        String sql5 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was bad\", \"F\", \"user9@gmail.com\", \"youtube.com/2\")";
+        String sql6 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was really bad\", \"P\", \"user7@gmail.com\", \"youtube.com/4\")";
+        String sql7 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This was special\", \"G\", \"user6@gmail.com\", \"youtube.com/5\")";
+        String sql8 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was neat!\", \"E\", \"user1@gmail.com\", \"youtube.com/6\")";
+        String sql9 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was meh\", \"F\", \"user5@gmail.com\", \"youtube.com/7\")";
+        String sql10 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was terrible\", \"P\", \"user6@gmail.com\", \"youtube.com/8\")";
+        String sql11 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was okay for me\", \"G\", \"user3@gmail.com\", \"youtube.com/9\")";
+        String sql12 = "insert into Reviews(remark, rating, author, youtubeid) values (\"This video was pretty darn good\", \"G\", \"user3@gmail.com\", \"youtube.com/10\")";
         
         try {
         	
