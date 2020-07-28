@@ -8,7 +8,7 @@ public class Video implements Serializable {
     private String url;
     private String title;
     private String desc;
-    private String com;
+    private int com;
     private int id;
 
 		public Video() {
@@ -18,7 +18,7 @@ public class Video implements Serializable {
 	        this.email = email;
 	    }
 	 
-	    public Video(String email, String url, String title, String desc, String com) {
+	    public Video(String email, String url, String title, String desc, int com) {
 	        this.email = email;
 	        this.url = url;
 	        this.title = title;
@@ -57,10 +57,10 @@ public class Video implements Serializable {
 	        this.desc = desc;
 	    }
 	    
-	    public String getCom() {
+	    public int getCom() {
 	        return com;
 	    }
-	    public void setCom(String com) {
+	    public void setCom(int com) {
 	        this.com = com;
 	    }
 }

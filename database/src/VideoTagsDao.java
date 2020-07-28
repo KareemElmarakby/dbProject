@@ -59,16 +59,16 @@ public class VideoTagsDao {
                        " tag VARCHAR(50), " + 
                        " PRIMARY KEY (url, tag)) "; 
         
-        String sql3 = "insert into VideoTags(url, tag) values (\"youtube.com/1\", \"cool, fun, tables!\")";
-        String sql4 = "insert into VideoTags(url, tag) values (\"youtube.com/2\", \"sick, neat, tables!\")";
-        String sql5 = "insert into VideoTags(url, tag) values (\"youtube.com/3\", \"sick, fun, tables!\")";
-        String sql6 = "insert into VideoTags(url, tag) values (\"youtube.com/4\", \"cool, neat, tables!\")";
-        String sql7 = "insert into VideoTags(url, tag) values (\"youtube.com/5\", \"sick, fun, tables!\")";
-        String sql8 = "insert into VideoTags(url, tag) values (\"youtube.com/6\", \"cool, fun, tables!\")";
-        String sql9 = "insert into VideoTags(url, tag) values (\"youtube.com/7\", \"sick, neat, tables!\")";
-        String sql10 = "insert into VideoTags(url, tag) values (\"youtube.com/8\", \"sick, neat, tables!\")";
-        String sql11 = "insert into VideoTags(url, tag) values (\"youtube.com/9\", \"cool, neat, tables!\")";
-        String sql12 = "insert into VideoTags(url, tag) values (\"youtube.com/10\", \"cool, fun, tables!\")";
+        String sql3 = "insert into VideoTags(url, tag) values (\"youtube.com/1\", \"cool\")";
+        String sql4 = "insert into VideoTags(url, tag) values (\"youtube.com/2\", \"cool\")";
+        String sql5 = "insert into VideoTags(url, tag) values (\"youtube.com/3\", \"cool\")";
+        String sql6 = "insert into VideoTags(url, tag) values (\"youtube.com/4\", \"cool\")";
+        String sql7 = "insert into VideoTags(url, tag) values (\"youtube.com/5\", \"cool\")";
+        String sql8 = "insert into VideoTags(url, tag) values (\"youtube.com/6\", \"cool\")";
+        String sql9 = "insert into VideoTags(url, tag) values (\"youtube.com/7\", \"cool\")";
+        String sql10 = "insert into VideoTags(url, tag) values (\"youtube.com/8\", \"cool\")";
+        String sql11 = "insert into VideoTags(url, tag) values (\"youtube.com/9\", \"cool\")";
+        String sql12 = "insert into VideoTags(url, tag) values (\"youtube.com/10\", \"cool\")";
 
         try {
         	

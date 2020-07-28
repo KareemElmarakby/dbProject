@@ -32,12 +32,24 @@
     </tr>
     <tr>
     <tr>
-     <td>Tags (One word each, separated by spaces)</td>
+     <td>Tags (One word each, separated by comma)</td>
      <td><input type="text" name="tags" /></td>
     </tr>
     <tr>
-     <td>Comedian (First And Last Name, With Space)</td>
-	 <td><input type="text" name="com" /></td>
+     <td>Comedian (First Name)</td>
+	 <td><input type="text" name="comFirst" /></td>
+    </tr>
+    <tr>
+     <td>Comedian (Last Name)</td>
+	 <td><input type="text" name="comLast" /></td>
+    </tr>
+    <tr>
+     <td>Comedian (Birthday [in YYYY-MM-DD format])</td>
+	 <td><input type="text" name="comDate" /></td>
+    </tr>
+    <tr>
+     <td>Comedian (Birthplace)</td>
+	 <td><input type="text" name="comPlace" /></td>
     </tr>
    </table>
    <input type="submit" value="Submit" />

@@ -16,6 +16,7 @@ public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static Connection connect = null;
 	private static Statement statement = null;
+	private static Statement statement2 = null;
 	private PreparedStatement preparedStatement = null;
 	private static ResultSet resultSet = null;
     private UserDao userDao;
@@ -119,7 +120,11 @@ public class UserServlet extends HttpServlet {
         String title = request.getParameter("title");
         String desc = request.getParameter("desc");
         String tags = request.getParameter("tags");
-        String comedian = request.getParameter("com");
+        String comedianFirst = request.getParameter("comFirst");
+        String comedianLast = request.getParameter("comLast");
+        String comedianDate = request.getParameter("comDate");
+        String comedianPlace = request.getParameter("comPlace");
+        int comid = 0;
         
     	try {
         	String sq1 = "SELECT postuser, postdate FROM youtubevideos";
@@ -151,6 +156,44 @@ public class UserServlet extends HttpServlet {
         	  if (dateUrlArr[0].equalsIgnoreCase(java.time.LocalDate.now().toString())){
         		  count++;
         	  }
+        	
+        	  statement2 = connect.createStatement();
+        	  ResultSet comsearch = statement2.executeQuery("SELECT comid FROM Comedians WHERE" +
+        	  												"firstname = " + comedianFirst +
+        	  												" AND lastname = " + comedianLast +
+        	  												" AND birthdate = " + comedianDate +
+        	  												" AND birthplace = " + comedianPlace);
+        	  if (comsearch.next()) {
+        		  comid = comsearch.getInt(1);
+        	  }
+        	  else {
+        		  String comedianSQL = "insert into Comedians(firstname, lastname, birthday, birthplace) values "
+        		  		+ "(?,?,?,?)";
+        		  PreparedStatement comedians = (PreparedStatement) connect.prepareStatement(comedianSQL);
+        	      comedians.setString(1, comedianFirst);
+        	      comedians.setString(2, comedianLast);
+        	      comedians.setString(3, comedianDate);
+        	      comedians.setString(4, comedianPlace);
+        	      
+        	      comedians.executeUpdate();
+        			
+        	      System.out.println("Insert is successful!");
+        	      comedians.close();
+        	      
+        	      ResultSet newcomsearch = statement2.executeQuery("SELECT comid FROM Comedians WHERE" +
+							"firstname = " + comedianFirst +
+							" AND lastname = " + comedianLast +
+							" AND birthdate = " + comedianDate +
+							" AND birthplace = " + comedianPlace);
+        	      
+        	      comid = newcomsearch.getInt(1);
+        	  }
+        	  
+        	  
+        	Video video = new Video(user, url, title, desc, comid);
+        	VideoDao.logvideo(video);
+        	VideoTags inserttags = new VideoTags(url, tags);
+        	VideoTagsDao.logtags(inserttags);
           }
           
         } 
