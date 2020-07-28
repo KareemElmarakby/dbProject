@@ -69,6 +69,8 @@ public class ComedianDao {
         String sql11 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First9\", \"Last9\", \"1984-10-14\", \"Kansas\")";
         String sql12 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First10\", \"Last10\", \"1984-11-14\", \"Tennessee\")";
         
+        String sql13 = "ALTER TABLE Comedians ADD FullName VARCHAR(50)";
+        String sql14 = "UPDATE Comedians SET FullName = CONCAT(firstname,' ',lastname)";
         try {
         	
         	Class.forName("com.mysql.jdbc.Driver");
@@ -90,6 +92,8 @@ public class ComedianDao {
 		  statement.executeUpdate(sql10);
 		  statement.executeUpdate(sql11);
 		  statement.executeUpdate(sql12);
+		  statement.executeUpdate(sql13);
+		  statement.executeUpdate(sql14);
           
         } 
         catch (Exception e) {
