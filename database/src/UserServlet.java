@@ -445,7 +445,7 @@ public class UserServlet extends HttpServlet {
     	ReviewDao.InitializeDB();
     	VideoTagsDao.InitializeDB();
     	
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("RootHomePage.jsp");
 
     }
     
