@@ -18,8 +18,6 @@
           	              + "user=root&password=pass123"); 
                     Statement st= con.createStatement(); 
                     ResultSet rs = null;
-                    //int i = 1; //set these for how many results we're printing
-                    int valueSet = 0;
                     String sql = null;
                     
                     try {
@@ -30,13 +28,11 @@
                					 "LEFT JOIN youtubevideos on comedians.comid = youtubevideos.comid " + 
             					 "LEFT JOIN reviews on youtubevideos.url = reviews.youtubeid " + 
             					 "WHERE reviewid IS NOT NULL AND rating = 'E'");
-                			valueSet = 3;
                 			break;
                 		case "new":
                 			rs = st.executeQuery("SELECT firstname, lastname FROM comedians " + 
                					 "LEFT JOIN youtubevideos on comedians.comid = youtubevideos.comid " + 
             				     "WHERE DATE(postdate) = curdate()");
-                			valueSet = 2;
                 			break;
                 		case "hot":
                 			rs = st.executeQuery("SELECT firstname, lastname, COUNT(rating) FROM comedians " + 
@@ -45,7 +41,6 @@
             					 "WHERE reviewid IS NOT NULL AND rating = 'E' " + 
             					 "GROUP BY comedians.firstname " + 
             					 "ORDER BY COUNT(rating) DESC LIMIT 3");
-                			valueSet = 3;
                 			break;
                 		case "top": // Still only returns 1 value, rewritten to use MAX
                 			rs = st.executeQuery("SELECT FullName, MAX(x.url_count) " +
@@ -57,13 +52,11 @@
                 								 "WHERE reviewid IS NOT NULL " +
                 								 "GROUP BY comedians.firstname " +
                 								 ") x");
-                			valueSet = 2;
                 			break;
                 		case "tags":
                 			rs = st.executeQuery("SELECT tag " + 
                					 "FROM videotags " + 
             					 "WHERE((SELECT COUNT(url) FROM Users) = (SELECT COUNT(url) FROM videotags))");
-                			valueSet = 1;
                 			break;
                 		case "favorite":
                 			rs = st.executeQuery("SELECT FullName " +
@@ -71,7 +64,6 @@
                 								 "LEFT JOIN comedians ON comedians.comid = isfavorite.comid " +
                 								 "WHERE email = '" + request.getParameter("user1") + "' OR email = '" + request.getParameter("user2") + "' " +
                 								 "GROUP BY isfavorite.comid HAVING COUNT(*) > 1");
-                			valueSet = 2;
                 			break;
                 		case "productive":
                 			rs = st.executeQuery("SELECT FullName, Count(url) " +
@@ -80,21 +72,18 @@
                 								 "WHERE email is not null " +
                 								 "GROUP BY users.email " +
                 								 "ORDER BY count(url) desc");
-							valueSet = 2;
                 			break;
                 		case "reviewers":
                 			rs = st.executeQuery("SELECT firstN, lastN " + 
                					 "FROM users " + 
             					 "LEFT JOIN reviews on reviews.author = users.firstN " + 
             					 "WHERE rating = 'G' OR rating = 'E'");
-                			valueSet = 2;
                 			break;
                 		case "poor":
                 			rs = st.executeQuery("SELECT url " + 
                					 "FROM youtubevideos " + 
             					 "LEFT JOIN reviews on youtubevideos.url = reviews.youtubeid " + 
             					 "WHERE rating = 'P'");
-                			valueSet = 1;
                 			break;
                 		case "twins":
                 			rs = st.executeQuery("SELECT DISTINCT IsFavorite1.email, IsFavorite2.email" +
@@ -110,7 +99,6 @@
                 				 "HAVING COUNT(isfavorite.email) > 1 ) " +
                 				 "AND IsFavorite1.email != IsFavorite2.email " +
                 				 "AND IsFavorite1.email < IsFavorite2.email"); 
-                			valueSet = 2;
                 			break;
                 		}
                         		
