@@ -369,8 +369,9 @@ public class UserServlet extends HttpServlet {
         
         
         
-        if (password != passCheck) { 
+        if (!(passCheck.equals(password))) { 
             System.out.println("Passwords do not match!");
+            System.out.println(password + " " + passCheck);
             response.sendRedirect("registration.jsp");
         } 
         else{ 

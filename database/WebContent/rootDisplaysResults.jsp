@@ -121,40 +121,22 @@
                     
                     ResultSetMetaData metadata = rs.getMetaData();
                     int numberOfColumns = metadata.getColumnCount();
-				
-                    if (twinFormat){
-                    	if (rs.isBeforeFirst()){
-                            %>
-                                    <table>
-                            <%  while(rs.next()) {
-                            			int i = 1;%>
-                                      <tr> 
-                                      	<% while(i <= numberOfColumns){ %>
-                            	  		<td> <%= rs.getString(i) %> </td>
-                            			<% 		i++; }  %>
-                            		  </tr>
-                            <% }} 
-                            	else{ out.println("No Results Found");}%>
-
-                                    </table> 
-                    }
-                    
-                    else{
+			
                     if (rs.isBeforeFirst()){
-                %>
-                        <table>
-                <%  while(rs.next()) {
-                			int i = 1;%>
-                          <tr> 
-                          	<% while(i <= numberOfColumns){ %>
-                	  		<td> <%= rs.getString(i) %> </td>
-                			<% 		i++; }  %>
-                		  </tr>
-                <% }} 
-                	else{ out.println("No Results Found");}%>
+                        %>
+                                <table>
+                        <%  while(rs.next()) {
+                        			int i = 1;%>
+                                  <tr> 
+                                  	<% while(i <= numberOfColumns){ %>
+                        	  		<td> <%= rs.getString(i) %> </td>
+                        			<% 		i++; }  %>
+                        		  </tr>
+                        <% }} 
+                        	else{ out.println("No Results Found");}%>
 
-                        </table>  
-                        <%} %>
+                                </table>   
+              
     <a href="rootDisplays.jsp">Return To Root Functions</a>                   
     </body>
 </html>

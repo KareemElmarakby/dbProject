@@ -139,6 +139,7 @@ public class UserDao {
     	connect_func();         
 		String sql = "INSERT INTO Users(email, pass, firstN, lastN, gender, age) VALUES " +
 	            " (?, ?, ?, ?, ?, ?);";
+		String sql2 = "UPDATE Users SET FullName = CONCAT(firstN,' ',lastN)";
 		
 		preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
         preparedStatement.setString(1, user.getUsername());
@@ -151,6 +152,8 @@ public class UserDao {
 //		preparedStatement.executeUpdate();
 		
         boolean rowInserted = preparedStatement.executeUpdate() > 0;
+        preparedStatement = (PreparedStatement) connect.prepareStatement(sql2);
+        preparedStatement.executeUpdate();
         preparedStatement.close();
 //        disconnect();
         return rowInserted;
