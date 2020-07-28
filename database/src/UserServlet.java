@@ -200,18 +200,7 @@ public class UserServlet extends HttpServlet {
         catch (Exception e) {
              System.out.println(e);
         }
-        /*
-        Video yt = new Video(user, url, title, desc, comedian);
-        VideoTags ytTags = new VideoTags(url, tags);
-        
-        try {
-			VideoDao.logvideo(yt);
-	        VideoTagsDao.logtags(ytTags);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}   
-        */
+
         try {
 			response.sendRedirect("StandardUserHomePage.jsp");
 		} catch (IOException e) {
