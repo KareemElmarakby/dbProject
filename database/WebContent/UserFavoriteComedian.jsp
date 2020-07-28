@@ -10,6 +10,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+System.out.println("email is " + session.getAttribute("email")); 
+%>
 <form action="<%= request.getContextPath() %>/updateFavCom" name="test2" method="post">
    <table style="with: 80%">
     <tr>
@@ -42,7 +45,6 @@
 	 </td>
     </tr>
     </table>
-    <input type="hidden" name="userList" value=<%= session.getAttribute("email") %>>
   </form>
 </body>
 </html>

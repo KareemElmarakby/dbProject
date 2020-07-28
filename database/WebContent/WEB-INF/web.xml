@@ -85,4 +85,9 @@
    		<url-pattern>/updateFavCom</url-pattern>
 	</servlet-mapping>
 	
+	<servlet-mapping>
+   		<servlet-name>UserServlet</servlet-name>
+   		<url-pattern>/userrequest</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

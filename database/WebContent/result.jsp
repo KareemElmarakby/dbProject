@@ -1,13 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import ="java.sql.*" %>
 
- <%
-            String email = request.getParameter("user");
-            session.setAttribute("email", email);
-
-        %> 
-
-
 <!DOCTYPE html>
 <html>
 <body> 

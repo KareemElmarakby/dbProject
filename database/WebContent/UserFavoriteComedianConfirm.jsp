@@ -11,6 +11,7 @@
 <br>
 <br>
 <a href="UserFavoriteComedian.jsp">Add/Delete Another Comedian</a>
+<br>
 <a href="StandardUserHomePage.jsp">Return To Home Page</a>
 </body>
 </html>

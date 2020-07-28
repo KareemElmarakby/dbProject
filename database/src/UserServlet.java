@@ -33,6 +33,7 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
+    	
         System.out.println(action);
         try {
             switch (action) {
@@ -56,6 +57,9 @@ public class UserServlet extends HttpServlet {
             	break;
             case "/login":
             	login(request, response);
+            	break;
+            case "/userrequest":
+            	userRequest(request, response);
             	break;
             case "/logvideo":
             	logvideo(request, response);
@@ -81,7 +85,37 @@ public class UserServlet extends HttpServlet {
         }
     }
     
-    private void favCom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void userRequest(HttpServletRequest request, HttpServletResponse response) {
+    	try {
+    		
+    		String submit = request.getParameter("menu");
+    		String user = request.getParameter("pass");
+        	request.setAttribute("email", user);
+    		
+        	if(submit.equalsIgnoreCase("Search")) {
+        		RequestDispatcher dispatcher = request.getRequestDispatcher("search.jsp");       
+            	dispatcher.forward(request, response);
+            	}
+        	if(submit.equalsIgnoreCase("Favorites")) {
+        		RequestDispatcher dispatcher = request.getRequestDispatcher("UserFavoriteComedian.jsp");       
+            	dispatcher.forward(request, response);
+            	}
+        	if(submit.equalsIgnoreCase("Insert")) {
+        		RequestDispatcher dispatcher = request.getRequestDispatcher("insertVideo.jsp");       
+            	dispatcher.forward(request, response);
+            	}
+        	if(submit.equalsIgnoreCase("Login")) {
+        		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");       
+            	dispatcher.forward(request, response);
+            	}
+    	}
+    	catch (Exception e) {
+    		System.out.println(e);
+    	}
+		
+	}
+
+	private void favCom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	try {
         	
         	Class.forName("com.mysql.jdbc.Driver");
@@ -89,18 +123,25 @@ public class UserServlet extends HttpServlet {
           connect = DriverManager
               .getConnection("jdbc:mysql://localhost:3306/testdb?"
                   + "user=root&password=pass123");
-          String user = request.getParameter("userList");
+          HttpSession session = request.getSession();
+          String submit = request.getParameter("Submit");
           statement = connect.createStatement();
           
-          if(request.getParameter("Submit") == "Add") {
+          
+          if(submit.equalsIgnoreCase("Add")) {
+        	  System.out.println("Adding comedian");
+        	  System.out.println(session.getAttribute("email"));
         	  String add = request.getParameter("addCom");
-        	  String sql1 = "INSERT INTO isfavorite (email, comid) VALUES (" + user + ", " + add + ")";
+        	  System.out.println(add);
+        	  String sql1 = "INSERT INTO isfavorite (email, comid) VALUES ('" + session.getAttribute("email") + "', '" + add + "');";
         	  statement.executeUpdate(sql1);
+        	  System.out.println("inserted for user " + session.getAttribute("email"));
           }
           
-          if(request.getParameter("Submit") != "Delete") {
+          if(submit.equalsIgnoreCase("Delete")) {
+        	  System.out.println("Deleting comedian");
         	  String delete = request.getParameter("removeCom");
-        	  String sql2 = "DELETE FROM isfavorite WHERE (email = " + user + " AND comid = " + delete + ")";
+        	  String sql2 = "DELETE FROM isfavorite WHERE (email = '" + session.getAttribute("email") + "' AND comid = '" + delete + "');";
         	  statement.executeUpdate(sql2);
           }
           
@@ -109,7 +150,7 @@ public class UserServlet extends HttpServlet {
              System.out.println(e);
         }
     	
-    	RequestDispatcher dispatcher = request.getRequestDispatcher("UserFavoriteComedianResults.jsp");
+    	RequestDispatcher dispatcher = request.getRequestDispatcher("UserFavoriteComedianConfirm.jsp");
         dispatcher.forward(request, response);
 	}
 
@@ -244,18 +285,27 @@ public class UserServlet extends HttpServlet {
 		}
 	}
 
-	protected void login(HttpServletRequest request, HttpServletResponse response)
-    		throws ServletException, IOException {
+	protected void login(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException{
     	System.out.println("testing for login");
     	String username = request.getParameter("user");
     	String password = request.getParameter("pass");
+    	
+    	HttpSession session = request.getSession();
+    	String user = request.getParameter("user");
+    	session.setAttribute("email", user);
+        
     	System.out.println(username);
     	System.out.println(password);
     	try {
-        	if(username.equals("root") && password.equals("pass123"))
-        		response.sendRedirect("RootHomePage.jsp");
-        	else
-        		response.sendRedirect("StandardUserHomePage.jsp");	
+        	if(username.equals("root") && password.equals("pass123")) {
+        		RequestDispatcher dispatcher = request.getRequestDispatcher("RootHomePage.jsp");       
+            	dispatcher.forward(request, response);
+            	}
+        	else{
+        		System.out.println("email is " + session.getAttribute("email"));
+        		RequestDispatcher dispatcher = request.getRequestDispatcher("StandardUserHomePage.jsp");       
+            	dispatcher.forward(request, response);
+            	}	
     	}
     	catch (Exception e) {
     		System.out.println(e);

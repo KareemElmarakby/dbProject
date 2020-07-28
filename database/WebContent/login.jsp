@@ -8,7 +8,6 @@
 </head>
 <body>
 <h1>User Details</h1>
-
 <form method="post" action="login">
 Enter Email:<input type="text" name="user"><br/><br/>
 Enter Password:<input type="password" name="pass"><br/>
