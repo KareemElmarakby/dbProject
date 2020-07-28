@@ -117,7 +117,7 @@ public class ReviewDao {
 	          .getConnection("jdbc:mysql://localhost:3306/testdb?"
 	              + "user=root&password=pass123");
 	      
-			String sql = "insert into Reviews(remark, rating, author, youtube) values (?, ?, ?, ?)";
+			String sql = "insert into Reviews(remark, rating, author, youtubeid) values (?, ?, ?, ?)";
 			
 		  preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
 	      preparedStatement.setString(1, re.getRemark());

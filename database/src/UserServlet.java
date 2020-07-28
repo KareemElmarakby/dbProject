@@ -114,6 +114,47 @@ public class UserServlet extends HttpServlet {
     	}
 		
 	}
+    
+    protected void login(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException{
+    	System.out.println("testing for login");
+    	String username = request.getParameter("user");
+    	String password = request.getParameter("pass");
+    	
+    	HttpSession session = request.getSession();
+    	String user = request.getParameter("user");
+    	session.setAttribute("email", user);
+        
+    	System.out.println(username);
+    	System.out.println(password);
+    	try {
+    		Class.forName("com.mysql.jdbc.Driver");
+            System.out.println("Handling IsFavorite queries");
+            connect = DriverManager
+                .getConnection("jdbc:mysql://localhost:3306/testdb?"
+                    + "user=root&password=pass123");
+            statement = connect.createStatement();
+            String search = "SELECT email FROM Users WHERE (email = '" + username + "' AND pass = '" + password + "');";
+            ResultSet rs = statement.executeQuery(search);
+            
+            
+        	if(username.equals("root") && password.equals("pass123")) {
+        		RequestDispatcher dispatcher = request.getRequestDispatcher("RootHomePage.jsp");       
+            	dispatcher.forward(request, response);
+            	}
+        	if(rs.next()){
+        		System.out.println("email is " + session.getAttribute("email"));
+        		RequestDispatcher dispatcher = request.getRequestDispatcher("StandardUserHomePage.jsp");       
+            	dispatcher.forward(request, response);
+            	}	
+        	else {
+        		System.out.println("The login is invalid");
+        		response.sendRedirect("login.jsp");
+        	}
+    	}
+    	catch (Exception e) {
+    		System.out.println(e);
+    	}
+    }
 
 	private void favCom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	try {
@@ -162,17 +203,19 @@ public class UserServlet extends HttpServlet {
 		
 	}
 
-	private void review(HttpServletRequest request, HttpServletResponse response) {
+	private void review(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
         String remark = request.getParameter("comment");
         String rating = request.getParameter("rating");
-        HttpSession session = request.getSession();
         String author = (String)session.getAttribute("email");
         String youtube = request.getParameter("url");
+        System.out.println("This url is " + youtube);
         
         
         Review re = new Review(remark, rating, author, youtube);
         ReviewDao.logreview(re);  
-        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("StandardUserHomePage.jsp");       
+    	dispatcher.forward(request, response);
 	}
 		
 
@@ -285,46 +328,6 @@ public class UserServlet extends HttpServlet {
 		}
 	}
 
-	protected void login(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException{
-    	System.out.println("testing for login");
-    	String username = request.getParameter("user");
-    	String password = request.getParameter("pass");
-    	
-    	HttpSession session = request.getSession();
-    	String user = request.getParameter("user");
-    	session.setAttribute("email", user);
-        
-    	System.out.println(username);
-    	System.out.println(password);
-    	try {
-    		Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("Handling IsFavorite queries");
-            connect = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306/testdb?"
-                    + "user=root&password=pass123");
-            statement = connect.createStatement();
-            String search = "SELECT email FROM Users WHERE (email = '" + username + "' AND pass = '" + password + "');";
-            ResultSet rs = statement.executeQuery(search);
-            
-            
-        	if(username.equals("root") && password.equals("pass123")) {
-        		RequestDispatcher dispatcher = request.getRequestDispatcher("RootHomePage.jsp");       
-            	dispatcher.forward(request, response);
-            	}
-        	if(rs.next()){
-        		System.out.println("email is " + session.getAttribute("email"));
-        		RequestDispatcher dispatcher = request.getRequestDispatcher("StandardUserHomePage.jsp");       
-            	dispatcher.forward(request, response);
-            	}	
-        	else {
-        		System.out.println("The login is invalid");
-        		response.sendRedirect("login.jsp");
-        	}
-    	}
-    	catch (Exception e) {
-    		System.out.println(e);
-    	}
-    }
     private void listPeople(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         List<User> listUsers = userDao.listAllUsers();

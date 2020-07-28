@@ -120,7 +120,7 @@ public class VideoDao {
       preparedStatement.setString(1, video.getUrl());
       preparedStatement.setString(2, video.getTitle());
       preparedStatement.setString(3, video.getDesc());
-      //preparedStatement.setString(4, video.getCom());    NEEDS TO BE A NESTED SEARCH FOR COMID MATCHING THE COMEDIAN NAME
+      preparedStatement.setInt(4, video.getCom());  
       preparedStatement.setString(5, video.getEmail());
       
       Date date = Calendar.getInstance().getTime();  

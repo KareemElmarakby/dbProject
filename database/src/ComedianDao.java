@@ -63,7 +63,7 @@ public class ComedianDao {
         String sql5 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First3\", \"Last3\", \"1984-04-14\", \"Texas\")";
         String sql6 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First4\", \"Last4\", \"1984-05-14\", \"Maine\")";
         String sql7 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First5\", \"Last5\", \"1984-06-14\", \"Washington\")";
-        String sql8 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First6\", \"Last6\", \"1984-07-14\", \"New York\")";
+        String sql8 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"bob\", \"bobilly\", \"1984-07-14\", \"New York\")";
         String sql9 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First7\", \"Last7\", \"1984-08-14\", \"Florida\")";
         String sql10 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First8\", \"Last8\", \"1984-09-14\", \"California\")";
         String sql11 = "insert into Comedians(firstname, lastname, birthday, birthplace) values (\"First9\", \"Last9\", \"1984-10-14\", \"Kansas\")";
