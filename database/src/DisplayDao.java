@@ -102,7 +102,7 @@ public class DisplayDao {
 		return sql;
 	}
 	
-	public static String favComedian() { // NOT CURRENTLY WORKING !!!
+	public static String favComedian() { // WORKING
 		String sql = "SELECT * " +
 					 "FROM isfavorite " +
 					 "WHERE email = 'user1@gmail.com' OR email = 'user2@gmail.com'";
@@ -149,7 +149,7 @@ public class DisplayDao {
 		return sql;
 	}
 	
-	public static String twinUsers() {
+	public static String twinUsers() { // WORKING
 		String sql = "";
 		return sql;
 	}

@@ -47,17 +47,17 @@
             					 "ORDER BY COUNT(rating) DESC LIMIT 3");
                 			valueSet = 3;
                 			break;
-                		case "top":
-                			rs = st.executeQuery("SELECT firstname, lastname, COUNT(url) FROM comedians " + 
-               					 "LEFT JOIN youtubevideos on comedians.comid = youtubevideos.comid " + 
-            					 "LEFT JOIN reviews on youtubevideos.url = reviews.youtubeid " + 
-            					 "WHERE reviewid IS NOT NULL " + 
-            					 "GROUP BY comedians.firstname " + 
-            					 "ORDER BY COUNT(url) DESC " + 
-            					 "CASE " + 
-            					 "WHEN COUNT(DISTINCT url) = COUNT(url) THEN LIMIT 1 " + 
-            					 "END CASE");
-                			valueSet = 3;
+                		case "top": // Still only returns 1 value, rewritten to use MAX
+                			rs = st.executeQuery("SELECT FullName, MAX(x.url_count) " +
+                								 "FROM ( " +
+                								 "SELECT FullName, COUNT(url) as url_count " +
+                								 "FROM comedians " +
+                								 "LEFT JOIN youtubevideos on comedians.comid = youtubevideos.comid " +
+                								 "LEFT JOIN reviews ON youtubevideos.url = reviews.youtubeid " +
+                								 "WHERE reviewid IS NOT NULL " +
+                								 "GROUP BY comedians.firstname " +
+                								 ") x");
+                			valueSet = 2;
                 			break;
                 		case "tags":
                 			rs = st.executeQuery("SELECT tag " + 
@@ -74,16 +74,13 @@
                 			valueSet = 2;
                 			break;
                 		case "productive":
-                			rs = st.executeQuery("SELECT email, COUNT(url) " + 
-               					 "FROM youtubevideos " + 
-            					 "LEFT JOIN users on youtubevideos.postuser = users.email " + 
-            					 "WHERE email IS NOT NULL " + 
-            					 "GROUP BY users.email " + 
-            					 "ORDER BY COUNT(url) DESC " + 
-            					 "CASE " + 
-            					 "	WHEN COUNT(DISTINCT url) = COUNT(url) THEN LIMIT 1 " + 
-            					 "END");
-                			valueSet = 2;
+                			rs = st.executeQuery("SELECT FullName, Count(url) " +
+                								 "FROM youtubevideos " +
+                								 "LEFT JOIN users ON youtubevideos.postuser = users.email " +
+                								 "WHERE email is not null " +
+                								 "GROUP BY users.email " +
+                								 "ORDER BY count(url) desc");
+							valueSet = 2;
                 			break;
                 		case "reviewers":
                 			rs = st.executeQuery("SELECT firstN, lastN " + 
