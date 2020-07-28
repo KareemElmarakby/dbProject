@@ -417,8 +417,9 @@ public class UserServlet extends HttpServlet {
     		throws SQLException, IOException {
     	System.out.println("Initializing DB from servlet");
     	
-    	String sql1 = "DROP DATABASE testdb";
-    	String sql2 = "CREATE DATABASE testdb";
+    	String sql1 = "DROP DATABASE IF EXISTS testdb";
+    	String sql2 = "CREATE DATABASE IF NOT EXISTS testdb";
+    	String sql3 = "USE testdb";
     	
     	try {
         	
@@ -432,9 +433,11 @@ public class UserServlet extends HttpServlet {
 
           statement.executeUpdate(sql1);
           statement.executeUpdate(sql2);
+          statement.executeUpdate(sql3);
           
         } 
         catch (Exception e) {
+        	 System.out.println("broken");
              System.out.println(e);
         }
     	
@@ -445,7 +448,7 @@ public class UserServlet extends HttpServlet {
     	ReviewDao.InitializeDB();
     	VideoTagsDao.InitializeDB();
     	
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("RootHomePage.jsp");
 
     }
     

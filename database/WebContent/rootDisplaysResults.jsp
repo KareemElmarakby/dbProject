@@ -54,9 +54,11 @@
                 								 ") x");
                 			break;
                 		case "tags":
-                			rs = st.executeQuery("SELECT tag " + 
-               					 "FROM videotags " + 
-            					 "WHERE((SELECT COUNT(url) FROM Users) = (SELECT COUNT(url) FROM videotags))");
+                			rs = st.executeQuery("SELECT tag " +
+                					"FROM Videotags " +
+                					"GROUP BY tag " +
+                					"HAVING COUNT(tag) = COUNT(DISTINCT url) " +
+                					"ORDER BY COUNT(Distinct url) DESC LIMIT 1");
                 			break;
                 		case "favorite":
                 			rs = st.executeQuery("SELECT FullName " +
@@ -112,7 +114,8 @@
                     
                     ResultSetMetaData metadata = rs.getMetaData();
                     int numberOfColumns = metadata.getColumnCount();
-
+				
+                    if (rs.isBeforeFirst()){
                 %>
                         <table>
                 <%  while(rs.next()) {
@@ -122,7 +125,8 @@
                 	  		<td> <%= rs.getString(i) %> </td>
                 			<% 		i++; }  %>
                 		  </tr>
-                <% } %>
+                <% }} 
+                	else{ out.println("No Results Found");}%>
 
                         </table>  
     <a href="rootDisplays.jsp">Return To Root Functions</a>                   
