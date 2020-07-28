@@ -55,7 +55,7 @@ public class UserDao {
                        "pass VARCHAR(50), " + 
                        "firstN VARCHAR(50), " + 
                        "lastN VARCHAR(50), " +
-                       "gender CHAR(1), " + 
+                       "gender VARCHAR(1), " + 
                        "age INTEGER, " +
                        "PRIMARY KEY (email))";
         
@@ -107,20 +107,20 @@ public class UserDao {
     
     public List<User> listAllUsers() throws SQLException {
         List<User> listUsers = new ArrayList<User>();        
-        String sql = "SELECT * FROM User";      
+        String sql = "SELECT * FROM Users";      
         connect_func();      
         statement =  (Statement) connect.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
          
         while (resultSet.next()) {
-            int id = resultSet.getInt("id");
             String firstName = resultSet.getString("firstName");
             String lastName = resultSet.getString("lastName");
             String age = resultSet.getString("age");
             String username = resultSet.getString("username");
             String password = resultSet.getString("password");
+            String gender = resultSet.getString("gender");
              
-            User user = new User(id, firstName, lastName, age, username, password);
+            User user = new User(username, password, firstName, lastName, gender, age);
             listUsers.add(user);
         }        
         resultSet.close();
@@ -137,17 +137,17 @@ public class UserDao {
          
     public boolean insert(User user) throws SQLException {
     	connect_func();         
-		String sql = "INSERT INTO User" +
-	            "  (id, first_name, last_name, age, username, password) VALUES " +
-	            " (?, ?, ?, ?, ?,?);";
+		String sql = "INSERT INTO Users(email, pass, firstN, lastN, gender, age) VALUES " +
+	            " (?, ?, ?, ?, ?, ?);";
 		
 		preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
-        preparedStatement.setInt(1, 1);
-        preparedStatement.setString(2, user.getFirstName());
-        preparedStatement.setString(3, user.getLastName());
-        preparedStatement.setString(4, user.getAge());
-        preparedStatement.setString(5, user.getUsername());
-        preparedStatement.setString(6, user.getPassword());
+        preparedStatement.setString(1, user.getUsername());
+        preparedStatement.setString(2, user.getPassword());
+        preparedStatement.setString(3, user.getFirstName());
+        preparedStatement.setString(4, user.getLastName());
+        preparedStatement.setString(5, user.getGender());
+        preparedStatement.setString(6, user.getAge());
+
 //		preparedStatement.executeUpdate();
 		
         boolean rowInserted = preparedStatement.executeUpdate() > 0;
@@ -245,8 +245,9 @@ public class UserDao {
             String age = resultSet.getString("age");
             String username = resultSet.getString("username");
             String password = resultSet.getString("password");
+            String gender = resultSet.getString("gender");
              
-            user = new User(id, firstName, lastName, age, username, password);
+            user = new User(username, password, firstName, lastName, gender, age);
         }
          
         resultSet.close();

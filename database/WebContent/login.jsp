@@ -13,6 +13,8 @@ Enter Email:<input type="text" name="user"><br/><br/>
 Enter Password:<input type="password" name="pass"><br/>
 <input type="submit" value="SUBMIT">
 </form>
+<br>
+<a href="registration.jsp">New User? Sign Up!</a>
 
 </body>
 </html>

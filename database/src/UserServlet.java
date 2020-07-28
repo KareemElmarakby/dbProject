@@ -297,15 +297,29 @@ public class UserServlet extends HttpServlet {
     	System.out.println(username);
     	System.out.println(password);
     	try {
+    		Class.forName("com.mysql.jdbc.Driver");
+            System.out.println("Handling IsFavorite queries");
+            connect = DriverManager
+                .getConnection("jdbc:mysql://localhost:3306/testdb?"
+                    + "user=root&password=pass123");
+            statement = connect.createStatement();
+            String search = "SELECT email FROM Users WHERE (email = '" + username + "' AND pass = '" + password + "');";
+            ResultSet rs = statement.executeQuery(search);
+            
+            
         	if(username.equals("root") && password.equals("pass123")) {
         		RequestDispatcher dispatcher = request.getRequestDispatcher("RootHomePage.jsp");       
             	dispatcher.forward(request, response);
             	}
-        	else{
+        	if(rs.next()){
         		System.out.println("email is " + session.getAttribute("email"));
         		RequestDispatcher dispatcher = request.getRequestDispatcher("StandardUserHomePage.jsp");       
             	dispatcher.forward(request, response);
             	}	
+        	else {
+        		System.out.println("The login is invalid");
+        		response.sendRedirect("login.jsp");
+        	}
     	}
     	catch (Exception e) {
     		System.out.println(e);
@@ -346,14 +360,26 @@ public class UserServlet extends HttpServlet {
         String age = request.getParameter("age");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        User newUser = new User(firstName, lastName, age, username, password);
+        String passCheck = request.getParameter("confirmPassword");
+        String gender = request.getParameter("gender");
+        User newUser = new User(username, password, firstName, lastName, gender, age);
         
-        boolean userTest = userDao.usernameDup(username);
-        if (userTest == true)
-        	response.sendRedirect("registration"); //needs error message
-        else {
-        userDao.insert(newUser);
-        response.sendRedirect("login"); //needs message confirming registration
+        
+        
+        if (password != passCheck) { 
+            System.out.println("Passwords do not match!");
+            response.sendRedirect("registration.jsp");
+        } 
+        else{ 
+        	boolean userTest = userDao.usernameDup(username);
+            if (userTest == true) {
+            	System.out.println("User exists!");
+            	response.sendRedirect("registration.jsp");
+            }
+            else {
+            	userDao.insert(newUser);
+            	response.sendRedirect("login.jsp"); //needs message confirming registration
+        } 
         
         }
     }
@@ -368,10 +394,11 @@ public class UserServlet extends HttpServlet {
         String age = request.getParameter("age");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String gender = request.getParameter("gender");
         
         System.out.println(firstName);
         
-        User user = new User(id, firstName, lastName, age, username, password);
+        User user = new User(username, password, firstName, lastName, gender, age);
         userDao.update(user);
         response.sendRedirect("list");
     }

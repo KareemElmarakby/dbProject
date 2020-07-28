@@ -3,24 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script> 
-          
-            function checkPassword() { 
-            	var password1 = document.getElementById("password").value;
-                var password2 = document.getElementById("confirmPassword").value;
 
-    
-                if (password1 != password2) { 
-                    alert ("\nPasswords do not match") 
-                    return false; 
-                } 
-
-                else{ 
-                    alert("Passwords match!") 
-                    return true; 
-                } 
-            } 
-        </script> 
 <meta charset="ISO-8859-1">
 <title>Registration</title>
 </head>
@@ -40,6 +23,11 @@
     <tr>
      <td>Age</td>
      <td><input type="text" name="age" /></td>
+    </tr>
+    <tr>
+	<tr>
+     <td>Gender (m or f)</td>
+     <td><input type="text" name="gender" /></td>
     </tr>
     <tr>
     <tr>

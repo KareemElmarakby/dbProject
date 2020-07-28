@@ -8,27 +8,19 @@ public class User implements Serializable {
     private String age;
     private String username;
     private String password;
-	private int id;
+	private String gender;
 
     
     public User() {
     }
- 
-    public User(int id) {
-        this.id = id;
-    }
- 
-    public User(int id, String firstName, String lastName, String age, String username, String password) {
-        this(firstName, lastName, age, username, password);
-        this.id = id;
-    }
-     
-    public User(String firstName, String lastName, String age, String username, String password) {
+  
+    public User(String username, String password, String firstName, String lastName, String gender, String age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.username = username;
         this.password = password;
+        this.gender = gender;
     }
     
     public String getFirstName() {
@@ -72,6 +64,13 @@ public class User implements Serializable {
     
     private boolean checkUsername(String username) {
     	return true;
+    }
+    
+    public String getGender() {
+        return gender;
+    }
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
 }

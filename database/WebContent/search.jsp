@@ -9,10 +9,6 @@
  <title>Search For Video</title>
 
  </head>
-  <%
-            String email = request.getParameter("user");
-            session.setAttribute("email", email);
-        %> 
 <form action="<%= request.getContextPath() %>/searchvideo" name="test2" method="post">
    <table style="with: 80%">
     <tr>
