@@ -50,12 +50,21 @@ public class IsFavoriteDao {
     public static void InitializeDB() {
     	// TODO Auto-generated method stub
     	System.out.println("InitializeDB For IsFavorite");
-        String sql2 = "CREATE TABLE IF NOT EXISTS IsFavorite" +
+        String sql1 = "CREATE TABLE IF NOT EXISTS IsFavorite" +
                        " (email VARCHAR(50), " +
                        " comid INTEGER, " + 
                        " PRIMARY KEY (email, comid), " + 
                        " FOREIGN KEY (email) REFERENCES Users(email), " +
                        " FOREIGN KEY (comid) REFERENCES Comedians(comid))"; 
+        
+        String sql2 = "insert into IsFavorite(email, comid) values (\"user1@gmail.com\", \"3\")";
+        String sql3 = "insert into IsFavorite(email, comid) values (\"user1@gmail.com\", \"4\")";
+        String sql4 = "insert into IsFavorite(email, comid) values (\"user1@gmail.com\", \"5\")";
+        String sql5 = "insert into IsFavorite(email, comid) values (\"user1@gmail.com\", \"6\")";
+        String sql6 = "insert into IsFavorite(email, comid) values (\"user3@gmail.com\", \"3\")";
+        String sql7 = "insert into IsFavorite(email, comid) values (\"user2@gmail.com\", \"3\")";
+        String sql8 = "insert into IsFavorite(email, comid) values (\"user2@gmail.com\", \"2\")";
+        String sql9 = "insert into IsFavorite(email, comid) values (\"user2@gmail.com\", \"1\")";
         
         try {
         	
@@ -67,7 +76,15 @@ public class IsFavoriteDao {
           
           statement = connect.createStatement();
 
+          statement.executeUpdate(sql1);
           statement.executeUpdate(sql2);
+          statement.executeUpdate(sql3);
+          statement.executeUpdate(sql4);
+          statement.executeUpdate(sql5);
+          statement.executeUpdate(sql6);
+          statement.executeUpdate(sql7);
+          statement.executeUpdate(sql8);
+          statement.executeUpdate(sql9);
           
         } 
         catch (Exception e) {
