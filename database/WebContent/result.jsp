@@ -36,8 +36,9 @@
 			ResultSet rs;
 			String searching = request.getParameter("search");
 
-			PreparedStatement ps = connect.prepareStatement("select url,title from YoutubeVideos where (Comedians.firstname LIKE ? OR Comedians.lastname LIKE ? OR VideoTags.tag=?) "
-         		+ "AND (YoutubeVideos.url = VideoTags.url OR YoutubeVideos.comid = Comedians.comid);");
+			PreparedStatement ps = connect.prepareStatement("SELECT YT.url, YT.title FROM youtubevideos YT, Comedians C, VideoTags VT " + 
+					 "WHERE (C.comid = YT.comid) AND (VT.url = YT.url) AND (C.firstname LIKE ? OR C.lastname LIKE ? OR VT.tag=?) " +
+					 "GROUP BY YT.url");
 			ps.setString(1, searching);
 			ps.setString(2, searching);
 			ps.setString(3, searching);

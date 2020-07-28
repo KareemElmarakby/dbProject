@@ -69,6 +69,9 @@ public class UserServlet extends HttpServlet {
             case "/displaytrends":
             	trends(request, response);
             	break;
+            case "/updateFavCom":
+            	favCom(request, response);
+            	break;
             default:          	
             	listPeople(request, response);           	
                 break;
@@ -78,7 +81,12 @@ public class UserServlet extends HttpServlet {
         }
     }
     
-    private void trends(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void favCom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	RequestDispatcher dispatcher = request.getRequestDispatcher("UserFavoriteComedianResults.jsp");
+        dispatcher.forward(request, response);
+	}
+
+	private void trends(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String user1 = request.getParameter("user1");
     	String user2 = request.getParameter("user2");
     	RequestDispatcher dispatcher = request.getRequestDispatcher("rootDisplaysResults.jsp");

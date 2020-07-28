@@ -80,4 +80,9 @@
    		<url-pattern>/displaytrends</url-pattern>
 	</servlet-mapping>
 	
+	<servlet-mapping>
+   		<servlet-name>UserServlet</servlet-name>
+   		<url-pattern>/updateFavCom</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

@@ -12,6 +12,7 @@
         %> 
 <body>
 		<a href="search.jsp">Click here to search the database for a video</a>
+		<a href="UserFavoriteComedian.jsp">Click here to add/remove a comedian to your favorites!</a>
 		<a href="insertVideo.jsp">Click here to insert video into database</a>
 		<a href="login.jsp">Click here to go back to login</a>
 </body>
