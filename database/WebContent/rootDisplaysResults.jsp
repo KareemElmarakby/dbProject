@@ -7,6 +7,11 @@
         <meta http-equiv="Content-Type" content="width=device-width, initial-scale=1">
         <link rel="styleSheet" href=url>
         <script src=url></script>
+        <style>
+			table, th, td {
+  			border: 1px solid black;
+			}
+		</style>
 
         <title>Results</title>
     </head>

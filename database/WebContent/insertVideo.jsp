@@ -4,19 +4,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Insert Videos</title>
 </head>
- <%
-            String email = request.getParameter("user");
-            session.setAttribute("email", email);
-        %> 
 <body>
 <form action="<%= request.getContextPath() %>/logvideo" name="test2" method="post">
    <table style="with: 80%">
     <tr>
      <td>User</td>
-     <td><input value=<% session.getAttribute(email); %> name="email" /> <% System.out.println(email); %></td>
+     <td><input value=<% session.getAttribute("email"); %> name="email" /> <% System.out.println("email"); %></td>
     </tr>
     <tr>
      <td>URL for YouTube Video</td>
