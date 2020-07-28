@@ -79,7 +79,7 @@
                 								 "LEFT JOIN users ON youtubevideos.postuser = users.email " +
                 								 "WHERE email is not null " +
                 								 "GROUP BY users.email " +
-                								 "ORDER BY count(url) desc");
+                								 "ORDER BY count(url) DESC LIMIT 1");
                 			break;
                 		case "reviewers":
                 			rs = st.executeQuery("SELECT firstN, lastN " + 
