@@ -62,11 +62,11 @@ public class VideoDao {
                        " FOREIGN KEY (comid) REFERENCES Comedians(comid), " +
                        " FOREIGN KEY (postuser) REFERENCES Users(email))"; 
         
-        String sql3 = "insert into YoutubeVideos(url, title, descrip, comid, postuser) values (\"youtube.com/1\", \"Sketch1\", \"Description1\", \"1\", \"user10@gmail.com\")";
-        String sql4 = "insert into YoutubeVideos(url, title, descrip, comid, postuser) values (\"youtube.com/2\", \"Sketch2\", \"Description2\", \"2\", \"user9@gmail.com\")";
-        String sql5 = "insert into YoutubeVideos(url, title, descrip, comid, postuser) values (\"youtube.com/3\", \"Sketch3\", \"Description3\", \"3\", \"user8@gmail.com\")";
-        String sql6 = "insert into YoutubeVideos(url, title, descrip, comid, postuser) values (\"youtube.com/4\", \"Sketch4\", \"Description4\", \"4\", \"user7@gmail.com\")";
-        String sql7 = "insert into YoutubeVideos(url, title, descrip, comid, postuser) values (\"youtube.com/5\", \"Sketch5\", \"Description5\", \"5\", \"user6@gmail.com\")";
+        String sql3 = "insert into YoutubeVideos(url, title, descrip, comid, postuser, postdate) values (\"youtube.com/1\", \"Sketch1\", \"Description1\", \"1\", \"user10@gmail.com\", \"2013-02-19\")";
+        String sql4 = "insert into YoutubeVideos(url, title, descrip, comid, postuser, postdate) values (\"youtube.com/2\", \"Sketch2\", \"Description2\", \"2\", \"user9@gmail.com\", \"2015-03-19\")";
+        String sql5 = "insert into YoutubeVideos(url, title, descrip, comid, postuser, postdate) values (\"youtube.com/3\", \"Sketch3\", \"Description3\", \"3\", \"user8@gmail.com\", \"2012-01-23\")";
+        String sql6 = "insert into YoutubeVideos(url, title, descrip, comid, postuser, postdate) values (\"youtube.com/4\", \"Sketch4\", \"Description4\", \"4\", \"user9@gmail.com\", \"2020-01-11\")";
+        String sql7 = "insert into YoutubeVideos(url, title, descrip, comid, postuser, postdate) values (\"youtube.com/5\", \"Sketch5\", \"Description5\", \"5\", \"user6@gmail.com\", \"2020-02-20\")";
         String sql8 = "insert into YoutubeVideos(url, title, descrip, comid, postuser) values (\"youtube.com/6\", \"Sketch6\", \"Description6\", \"6\", \"user5@gmail.com\")";
         String sql9 = "insert into YoutubeVideos(url, title, descrip, comid, postuser) values (\"youtube.com/7\", \"Sketch7\", \"Description7\", \"7\", \"user4@gmail.com\")";
         String sql10 = "insert into YoutubeVideos(url, title, descrip, comid, postuser) values (\"youtube.com/8\", \"Sketch8\", \"Description8\", \"8\", \"user3@gmail.com\")";
