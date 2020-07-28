@@ -100,7 +100,20 @@
                 			valueSet = 1;
                 			break;
                 		case "twins":
-                			//rs = st.executeQuery(DisplayDao.twinUsers());
+                			rs = st.executeQuery("SELECT DISTINCT IsFavorite1.email, IsFavorite2.email" +
+                				 "from IsFavorite IsFavorite1 " +
+                				 "JOIN isFavorite IsFavorite2 " +
+                				 "ON (IsFavorite1.comid = IsFavorite2.comid) " +
+                				 "WHERE IsFavorite1.comid IN ( " +
+                				 "SELECT IsFavorite.comid " +
+                				 "FROM IsFavorite " +
+                				 "LEFT OUTER JOIN Users ON (isfavorite.email = users.email) " +
+                				 "LEFT OUTER JOIN Comedians ON (isfavorite.comid = comedians.comid) " +
+                				 "GROUP BY isfavorite.comid " +
+                				 "HAVING COUNT(isfavorite.email) > 1 ) " +
+                				 "AND IsFavorite1.email != IsFavorite2.email " +
+                				 "AND IsFavorite1.email < IsFavorite2.email"); 
+                			valueSet = 2;
                 			break;
                 		}
                         		
