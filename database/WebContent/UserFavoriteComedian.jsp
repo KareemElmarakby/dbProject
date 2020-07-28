@@ -42,7 +42,7 @@
 	 </td>
     </tr>
     </table>
-    <input type="submit" value="Submit" />
+    <input type="hidden" name="userList" value=<%= session.getAttribute("email") %>>
   </form>
 </body>
 </html>

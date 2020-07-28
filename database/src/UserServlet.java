@@ -82,6 +82,33 @@ public class UserServlet extends HttpServlet {
     }
     
     private void favCom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	try {
+        	
+        	Class.forName("com.mysql.jdbc.Driver");
+          System.out.println("Handling IsFavorite queries");
+          connect = DriverManager
+              .getConnection("jdbc:mysql://localhost:3306/testdb?"
+                  + "user=root&password=pass123");
+          String user = request.getParameter("userList");
+          statement = connect.createStatement();
+          
+          if(request.getParameter("Submit") == "Add") {
+        	  String add = request.getParameter("addCom");
+        	  String sql1 = "INSERT INTO isfavorite (email, comid) VALUES (" + user + ", " + add + ")";
+        	  statement.executeUpdate(sql1);
+          }
+          
+          if(request.getParameter("Submit") != "Delete") {
+        	  String delete = request.getParameter("removeCom");
+        	  String sql2 = "DELETE FROM isfavorite WHERE (email = " + user + " AND comid = " + delete + ")";
+        	  statement.executeUpdate(sql2);
+          }
+          
+        } 
+        catch (Exception e) {
+             System.out.println(e);
+        }
+    	
     	RequestDispatcher dispatcher = request.getRequestDispatcher("UserFavoriteComedianResults.jsp");
         dispatcher.forward(request, response);
 	}
