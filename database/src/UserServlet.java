@@ -256,19 +256,19 @@ public class UserServlet extends HttpServlet {
           
           statement = connect.createStatement();
           
-          ResultSet rs = statement.executeQuery(sq1);
+          ResultSet rsuser = statement.executeQuery(sq1);
           
           int count = 0;
              
-          while(rs.next()) {
+          while(rsuser.next()) {
         	  System.out.println(count);
         	  if (count >= 5) {
         		  System.out.println("TOO MANY");
         		  response.sendRedirect("TooManyVideos.jsp");
         		  return;
         	  }
-        	  String dateUrl = rs.getString(2);
-        	  String userUrl = rs.getString(1);
+        	  String dateUrl = rsuser.getString(2);
+        	  String userUrl = rsuser.getString(1);
         	  String dateUrlArr[] = dateUrl.split(" ");
         	  System.out.println("Local: " + java.time.LocalDate.now().toString());
         	  System.out.println("Server: " + dateUrlArr[0]);
@@ -277,11 +277,7 @@ public class UserServlet extends HttpServlet {
         	  }
         	
         	  statement2 = connect.createStatement();
-        	  ResultSet comsearch = statement2.executeQuery("SELECT comid FROM Comedians WHERE" +
-        	  												"firstname = " + comedianFirst +
-        	  												" AND lastname = " + comedianLast +
-        	  												" AND birthdate = " + comedianDate +
-        	  												" AND birthplace = " + comedianPlace);
+        	  ResultSet comsearch = statement2.executeQuery("SELECT comid FROM testdb.Comedians WHERE firstname = '" + comedianFirst + "' AND lastname = '" + comedianLast + "';");
         	  if (comsearch.next()) {
         		  comid = comsearch.getInt(1);
         	  }
@@ -296,16 +292,15 @@ public class UserServlet extends HttpServlet {
         	      
         	      comedians.executeUpdate();
         			
-        	      System.out.println("Insert is successful!");
+        	      System.out.println("comedian insert is successful!");
         	      comedians.close();
         	      
-        	      ResultSet newcomsearch = statement2.executeQuery("SELECT comid FROM Comedians WHERE" +
-							"firstname = " + comedianFirst +
-							" AND lastname = " + comedianLast +
-							" AND birthdate = " + comedianDate +
-							" AND birthplace = " + comedianPlace);
+        	      ResultSet newcomsearch = statement2.executeQuery("SELECT comid FROM testdb.Comedians WHERE firstname = '" + comedianFirst + "' AND lastname = '" + comedianLast + "';");
         	      
-        	      comid = newcomsearch.getInt(1);
+        	      newcomsearch.next();
+                  comid = newcomsearch.getInt(1);
+            	  
+        	      
         	  }
         	  
         	  

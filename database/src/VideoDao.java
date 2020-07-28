@@ -114,7 +114,7 @@ public class VideoDao {
           .getConnection("jdbc:mysql://localhost:3306/testdb?"
               + "user=root&password=pass123");
       
-		String sql = "insert into YoutubeVideos(url, title, desc, comid, postuser, postdate) values (?, ?, ?, ?, ?, ?)";
+		String sql = "insert into YoutubeVideos(url, title, desc, comid, postuser) values (?, ?, ?, ' ? ', ?)";
 		
 	  preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
       preparedStatement.setString(1, video.getUrl());
@@ -123,11 +123,11 @@ public class VideoDao {
       preparedStatement.setInt(4, video.getCom());  
       preparedStatement.setString(5, video.getEmail());
       
-      Date date = Calendar.getInstance().getTime();  
-      DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");  
-      String strDate = dateFormat.format(date);
+      //Date date = Calendar.getInstance().getTime();  
+      //DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");  
+      //String strDate = dateFormat.format(date);
       		
-      preparedStatement.setString(6, strDate);
+      //preparedStatement.setString(6, strDate);
       preparedStatement.executeUpdate();
 		
       System.out.println("Insert is successful!");

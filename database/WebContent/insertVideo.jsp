@@ -17,7 +17,7 @@ table, th, td {
    <table style="with: 80%">
     <tr>
      <td>User</td>
-     <td><input value=<% session.getAttribute("email"); %> name="email" /> <% System.out.println("email"); %></td>
+     <td><input name="email" /> <% System.out.println("email"); %></td>
     </tr>
     <tr>
      <td>URL for YouTube Video</td>
