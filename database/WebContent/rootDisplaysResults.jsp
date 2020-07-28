@@ -18,7 +18,7 @@
           	              + "user=root&password=pass123"); 
                     Statement st= con.createStatement(); 
                     ResultSet rs = null;
-                    int i = 1; //set these for how many results we're printing
+                    //int i = 1; //set these for how many results we're printing
                     int valueSet = 0;
                     String sql = null;
                     
@@ -122,31 +122,20 @@
                     			
                     		}
                     
-                    if(rs.isBeforeFirst())
-                    {
+                    ResultSetMetaData metadata = rs.getMetaData();
+                    int numberOfColumns = metadata.getColumnCount();
+
                 %>
                         <table>
-                <%
-                        while(rs.next())
-                        {  
-                %>          <tr>
-                <% 
-                			while(i<valueSet+1){
-                %>
-                				<td> <%= rs.getString(i) %> </td>
-                <% 			i++; }
-                			i = 1;
-                %>
-                			</tr>
-                <%
-                        }
-                %>
-                <%  }
-                    else
-                    {
-                        out.println("No Search Results");
-                    }
-                %>
+                <%  while(rs.next()) {
+                			int i = 1;%>
+                          <tr> 
+                          	<% while(i <= numberOfColumns){ %>
+                	  		<td> <%= rs.getString(i) %> </td>
+                			<% 		i++; }  %>
+                		  </tr>
+                <% } %>
+
                         </table>  
     <a href="rootDisplays.jsp">Return To Root Functions</a>                   
     </body>
