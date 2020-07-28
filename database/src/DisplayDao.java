@@ -93,7 +93,7 @@ public class DisplayDao {
 		return sql;
 	}
 	
-	public static String popularTags() { // SHOULD work but needs further testing and debugging
+	public static String popularTags() { // NOT WORKING
 		String sql = "SELECT tag " + 
 					 "FROM videotags " + 
 					 "WHERE((SELECT COUNT(url) FROM Users) = (SELECT COUNT(url) FROM videotags))";
