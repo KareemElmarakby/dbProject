@@ -31,9 +31,8 @@ System.out.println("email is " + session.getAttribute("email"));
 			ResultSet rs;
 			String searching = request.getParameter("search");
 
-			PreparedStatement ps = connect.prepareStatement("SELECT YT.url, YT.title FROM youtubevideos YT, Comedians C, VideoTags VT " + 
-					 "WHERE (YT.comid = C.comid) AND (YT.url = VT.url) AND (C.firstname=? OR C.lastname=? OR VT.tag=?) " +
-					 "GROUP BY YT.url");
+			PreparedStatement ps = connect.prepareStatement("SELECT Y.url, Y.title FROM testdb.youtubevideos Y LEFT JOIN testdb.comedians on Y.comid = comedians.comid  LEFT JOIN testdb.videotags on Y.url = videotags.url " + 
+			"WHERE comedians.firstname=? OR comedians.lastname=? OR videotags.tag=?;");
 			ps.setString(1, searching);
 			ps.setString(2, searching);
 			ps.setString(3, searching);
