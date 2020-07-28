@@ -66,14 +66,12 @@
                 			valueSet = 1;
                 			break;
                 		case "favorite":
-                			rs = st.executeQuery("SELECT firstname, lastname " + 
-               					 "FROM comedians " + 
-            					 "LEFT JOIN isfavorite ON comedians.comid = isfavorite.comid " + 
-            					 "WHERE comedians.comid = isfavorite.comid " + 
-            					 "AND IN " + 
-            					 "(SELECT isfavorite.comid " + 
-            					 "FROM isfavorite " + 
-            					 "WHERE isfavorite.email = 'user1@gmail.com' AND isfavorite.email = 'user2@gmail.com')");
+                			rs = st.executeQuery("SELECT FullName " +
+                								 "FROM isfavorite " +
+                								 "LEFT JOIN comedians ON comedians.comid = isfavorite.comid " +
+                								 "WHERE email = '" + request.getParameter("user1") + "' OR email = '" + request.getParameter("user2") + "' " +
+                								 "GROUP BY isfavorite.comid HAVING COUNT(*) > 1");
+                			// request.getParameter("user1")
                 			valueSet = 2;
                 			break;
                 		case "productive":

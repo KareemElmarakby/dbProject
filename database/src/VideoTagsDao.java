@@ -59,16 +59,16 @@ public class VideoTagsDao {
                        " tag VARCHAR(50), " + 
                        " PRIMARY KEY (url, tag)) "; 
         
-        String sql3 = "insert into VideoTags(url, tag) values (\"youtube.com/1\", \"cool\")";
-        String sql4 = "insert into VideoTags(url, tag) values (\"youtube.com/1\", \"fun\")";
+        String sql3 = "insert into VideoTags(url, tag) values (\"youtube.com/1\", \"fun\")";
+        String sql4 = "insert into VideoTags(url, tag) values (\"youtube.com/1\", \"awesome\")";
         String sql5 = "insert into VideoTags(url, tag) values (\"youtube.com/1\", \"tables\")";
         String sql6 = "insert into VideoTags(url, tag) values (\"youtube.com/2\", \"neat\")";
         String sql7 = "insert into VideoTags(url, tag) values (\"youtube.com/2\", \"sick\")";
-        String sql8 = "insert into VideoTags(url, tag) values (\"youtube.com/2\", \"cool\")";
+        String sql8 = "insert into VideoTags(url, tag) values (\"youtube.com/2\", \"fun\")";
         String sql9 = "insert into VideoTags(url, tag) values (\"youtube.com/3\", \"school\")";
         String sql10 = "insert into VideoTags(url, tag) values (\"youtube.com/3\", \"fun\")";
         String sql11 = "insert into VideoTags(url, tag) values (\"youtube.com/3\", \"cool\")";
-        String sql12 = "insert into VideoTags(url, tag) values (\"youtube.com/4\", \"cool\")";
+        String sql12 = "insert into VideoTags(url, tag) values (\"youtube.com/4\", \"fun\")";
 
 
         try {
