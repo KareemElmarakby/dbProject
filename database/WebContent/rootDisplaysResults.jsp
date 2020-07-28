@@ -71,7 +71,6 @@
                 								 "LEFT JOIN comedians ON comedians.comid = isfavorite.comid " +
                 								 "WHERE email = '" + request.getParameter("user1") + "' OR email = '" + request.getParameter("user2") + "' " +
                 								 "GROUP BY isfavorite.comid HAVING COUNT(*) > 1");
-                			// request.getParameter("user1")
                 			valueSet = 2;
                 			break;
                 		case "productive":
